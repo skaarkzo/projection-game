@@ -9,6 +9,8 @@ public class animationStateController : MonoBehaviour
     int isWalkingHash;
     int isRunningHash;
 
+    public float speed = 2f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,21 +31,25 @@ public class animationStateController : MonoBehaviour
         if (!isWalking && forwardPressed)
         {
             animator.SetBool(isWalkingHash, true);
+            transform.Translate(Vector3.forward * Time.deltaTime * Input.GetAxis("Vertical") * speed);
         }
 
         if (isWalking && !forwardPressed)
         {
             animator.SetBool(isWalkingHash, false);
+            transform.Translate(Vector3.forward * Time.deltaTime * Input.GetAxis("Vertical") * speed);
         }
 
         if (!isRunning && (forwardPressed && runPressed))
         {
             animator.SetBool(isRunningHash, true);
+            transform.Translate(Vector3.forward * Time.deltaTime * Input.GetAxis("Vertical") * speed);
         }
 
         if (isRunning && (!forwardPressed || !runPressed))
         {
             animator.SetBool(isRunningHash, false);
+            transform.Translate(Vector3.forward * Time.deltaTime * Input.GetAxis("Vertical") * speed);
         }
     }
 }
