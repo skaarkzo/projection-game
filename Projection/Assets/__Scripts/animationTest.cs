@@ -56,6 +56,7 @@ public class animationTest : MonoBehaviour
                 Walk();
             }
 
+
             // Run
             else if (moveDirection != Vector3.zero && Input.GetKey(KeyCode.LeftShift))
             {

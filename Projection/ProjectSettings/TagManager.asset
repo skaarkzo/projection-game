@@ -16,14 +16,14 @@ TagManager:
   - Water
   - UI
   - Plane
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Floor
+  - Walls
+  - Doors
+  - Windows
+  - Ceiling
+  - Time Travel Room
+  - Vehicles
+  - Objects
   - 
   - 
   - 
