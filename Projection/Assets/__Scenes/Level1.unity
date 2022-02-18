@@ -2445,7 +2445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CollideAgainst:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 22400
   m_IgnoreTag: Player
   m_TransparentLayers:
     serializedVersion: 2
@@ -22215,12 +22215,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 774552572}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b035bd99c4c1fd4d992388591b3af76, type: 3}
+  m_Script: {fileID: 11500000, guid: d06cb5d976843a14faeb43d45d2beb5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0
   walkSpeed: 5
   runSpeed: 7
+  jumpHeight: 0
   isGrounded: 0
   groundCheckDistance: 0.2
   groundMask:

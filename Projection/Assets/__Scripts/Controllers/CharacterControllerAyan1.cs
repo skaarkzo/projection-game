@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class animationTest : MonoBehaviour
+public class CharacterControllerAyan1 : MonoBehaviour
 {
 
     public float moveSpeed;
     public float walkSpeed;
     public float runSpeed;
+
+    public float jumpHeight;
 
     private Vector3 moveDirection;
     private Vector3 velocity;
