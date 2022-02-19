@@ -22,6 +22,11 @@ public class Ayan1ControllerTest : MonoBehaviour
     private CharacterController controller;
     private Animator anim;
 
+    public bool jumping;
+    public bool falling;
+    //public bool grounded;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +42,6 @@ public class Ayan1ControllerTest : MonoBehaviour
 
     private void Move()
     {
-
         isGrounded = Physics.CheckSphere(transform.position, groundCheckDistance, groundMask);
 
         if (isGrounded && velocity.y < 0)
@@ -46,8 +50,9 @@ public class Ayan1ControllerTest : MonoBehaviour
         }
 
         float moveZ = Input.GetAxis("Vertical");
+        float moveX = Input.GetAxis("Horizontal");
 
-        moveDirection = new Vector3(0, 0, moveZ);
+        moveDirection = new Vector3(moveX, 0, moveZ);
         moveDirection = transform.TransformDirection(moveDirection);
 
         if (isGrounded)
@@ -55,59 +60,52 @@ public class Ayan1ControllerTest : MonoBehaviour
             // Walk
             if (moveDirection != Vector3.zero && !Input.GetKey(KeyCode.LeftShift))
             {
-                Walk();
+                moveSpeed = walkSpeed;
+
+                this.anim.SetFloat("Vertical", moveZ, 0.1f, Time.deltaTime);
+                this.anim.SetFloat("Horizontal", moveX, 0.1f, Time.deltaTime);
             }
 
 
             // Run
-            else if (moveDirection != Vector3.zero && Input.GetKey(KeyCode.LeftShift))
-            {
-                Run();
-            }
+            //else if (moveDirection != Vector3.zero && Input.GetKey(KeyCode.LeftShift))
+            //{
+            //    Run();
+            //}
 
 
             // Idle
             else if (moveDirection == Vector3.zero)
             {
-                Idle();
+                anim.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
+                anim.SetFloat("Horizontal", 0, 0.1f, Time.deltaTime);
             }
 
             moveDirection *= moveSpeed;
-
-            if (anim.GetBool("Jumping") == true && Input.GetKeyDown(KeyCode.Space))
-            {
-                Jump();
-            }
         }
 
         controller.Move(moveDirection * Time.deltaTime);
 
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+        //velocity.y += gravity * Time.deltaTime;
+        //controller.Move(velocity * Time.deltaTime);
     }
 
-    void Idle()
+    private void Idle()
     {
         anim.SetFloat("Speed", 0, 0.1f, Time.deltaTime);
     }
 
-    void Walk()
+    private void Walk()
     {
         moveSpeed = walkSpeed;
-        anim.SetFloat("Speed", 0.5f, 0.1f, Time.deltaTime);
+
+        float horizontalAxis = Input.GetAxis("Horizontal");
+        this.anim.SetFloat("Horizontal", horizontalAxis, 0.1f, Time.deltaTime);
     }
 
-    void Run()
+    private void Run()
     {
         moveSpeed = runSpeed;
         anim.SetFloat("Speed", 1, 0.1f, Time.deltaTime);
-    }
-
-    void Jump()
-    {
-        if (anim.GetBool("isGrounded") == false)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
-        }
     }
 }
