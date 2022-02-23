@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using System;
+using System.Threading.Tasks;
+
 public class Ayan1ControllerTest : MonoBehaviour
 {
 
@@ -16,6 +19,8 @@ public class Ayan1ControllerTest : MonoBehaviour
     private Vector3 velocity;
 
     public bool isGrounded;
+    public bool isRolling;
+
     public float groundCheckDistance;
     public LayerMask groundMask;
     public float gravity;
@@ -27,8 +32,11 @@ public class Ayan1ControllerTest : MonoBehaviour
     private float moveX;
 
     private Vector3 rollDirection;
+    private Vector3 rollCollider;
 
     private Rigidbody rb;
+
+    private bool rollingAnimation;
 
     // Start is called before the first frame update
     void Start()
@@ -41,13 +49,27 @@ public class Ayan1ControllerTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        
+
         Move();
         Roll();
+
     }
+
+    //IEnumerable BlinkTimer()
+    //{
+    //    yield return new WaitForSeconds(1);
+    //}
 
     private void Move()
     {
+
+
         isGrounded = Physics.CheckSphere(transform.position, groundCheckDistance, groundMask);
+
+  
+
 
         moveZ = Input.GetAxis("Vertical");
         moveX = Input.GetAxis("Horizontal");
@@ -110,8 +132,12 @@ public class Ayan1ControllerTest : MonoBehaviour
         anim.SetFloat("Horizontal", 0, 0.1f, Time.deltaTime);
     }
 
+    
+
     private void Walk()
     {
+
+
         moveSpeed = walkSpeed;
 
         this.anim.SetFloat("Vertical", moveZ/2, 0.1f, Time.deltaTime);
@@ -146,7 +172,9 @@ public class Ayan1ControllerTest : MonoBehaviour
         }
     }
 
-    private void Roll()
+    
+
+    private async void Roll()
     {
         rollDirection = new Vector3(moveX, 0, moveZ);
 
@@ -154,11 +182,26 @@ public class Ayan1ControllerTest : MonoBehaviour
         {
             if (Input.GetKey("q"))
             {
+
+                controller.height = 0.5f;
+                controller.center = new Vector3(0, 0.5f, 0);
+
+
                 anim.SetTrigger("Roll");
+
+
                 controller.Move(rollDirection * Time.deltaTime);
+
+
+                await Task.Delay(1600);
+
+                controller.height = 1.79f;
+                controller.center = new Vector3(0, 1, 0);
+
             }
 
         }
+
     }
 
     //private void Jump()
