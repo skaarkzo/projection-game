@@ -183,15 +183,13 @@ public class Ayan1ControllerTest : MonoBehaviour
             if (Input.GetKey("q"))
             {
 
+                anim.SetTrigger("Roll");
+                await Task.Delay(500);
+
                 controller.height = 0.5f;
                 controller.center = new Vector3(0, 0.5f, 0);
 
-
-                anim.SetTrigger("Roll");
-
-
                 controller.Move(rollDirection * Time.deltaTime);
-
 
                 await Task.Delay(1600);
 

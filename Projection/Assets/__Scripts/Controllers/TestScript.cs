@@ -11,7 +11,6 @@ public class TestScript : MonoBehaviour
 
     public float walkSpeed;
 
-
     // Start is called before the first frame update
     void Start()
     {
