@@ -34,14 +34,9 @@ public class Ayan1ControllerTest : MonoBehaviour
     private Vector3 rollDirection;
     private Vector3 rollCollider;
 
-    private Rigidbody rb;
-
-    private bool rollingAnimation;
-
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
         controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
     }
@@ -53,7 +48,6 @@ public class Ayan1ControllerTest : MonoBehaviour
 
 
         Move();
-        Roll();
 
     }
 
@@ -137,7 +131,6 @@ public class Ayan1ControllerTest : MonoBehaviour
     private void Walk()
     {
 
-
         moveSpeed = walkSpeed;
 
         this.anim.SetFloat("Vertical", moveZ / 2, 0.1f, Time.deltaTime);
@@ -170,36 +163,6 @@ public class Ayan1ControllerTest : MonoBehaviour
         {
             moveSpeed = runSpeed - 4;
         }
-    }
-
-
-
-    private async void Roll()
-    {
-        rollDirection = new Vector3(moveX, 0, moveZ);
-
-        if (isGrounded)
-        {
-            if (Input.GetKey("q"))
-            {
-
-                anim.SetTrigger("Roll");
-                await Task.Delay(500);
-
-                controller.height = 0.5f;
-                controller.center = new Vector3(0, 0.5f, 0);
-
-                controller.Move(rollDirection * Time.deltaTime);
-
-                await Task.Delay(1600);
-
-                controller.height = 1.79f;
-                controller.center = new Vector3(0, 1, 0);
-
-            }
-
-        }
-
     }
 
     //private void Jump()
