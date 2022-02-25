@@ -22,11 +22,11 @@ public class SlidingDoor : MonoBehaviour
         {
             if (tag == "Level1LDoor")
             {
-                endpos = transform.position + new Vector3(1, 0, 0);
+                endpos = transform.position + new Vector3(3, 0, 0);
             }
             else if (tag == "Level1RDoor")
             {
-                endpos = transform.position + new Vector3(-1, 0, 0);
+                endpos = transform.position + new Vector3(-3, 0, 0);
             }
         }
 
@@ -34,11 +34,11 @@ public class SlidingDoor : MonoBehaviour
         {
             if (tag == "Level1LDoor")
             {
-                endpos = transform.position + new Vector3(0, 0, -1);
+                endpos = transform.position + new Vector3(0, 0, -3);
             }
             else if (tag == "Level1RDoor")
             {
-                endpos = transform.position + new Vector3(0, 0, 1);
+                endpos = transform.position + new Vector3(0, 0, 3);
             }
         }
 
@@ -66,7 +66,7 @@ public class SlidingDoor : MonoBehaviour
     void MoveDoor(Vector3 goalPos)
     {
         float dist = Vector3.Distance(transform.position, goalPos);
-        if(dist > 0.01){
+        if(dist > 0.001){
             transform.position = Vector3.Lerp(transform.position, goalPos, speed * Time.deltaTime * 3);
         }
         else
