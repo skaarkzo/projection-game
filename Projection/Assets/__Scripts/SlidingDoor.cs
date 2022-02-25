@@ -66,7 +66,7 @@ public class SlidingDoor : MonoBehaviour
     void MoveDoor(Vector3 goalPos)
     {
         float dist = Vector3.Distance(transform.position, goalPos);
-        if(dist > 0.001){
+        if(dist > 0){
             transform.position = Vector3.Lerp(transform.position, goalPos, speed * Time.deltaTime * 3);
         }
         else
