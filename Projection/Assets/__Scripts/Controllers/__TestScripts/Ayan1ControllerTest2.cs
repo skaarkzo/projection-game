@@ -20,10 +20,9 @@ public class Ayan1ControllerTest2 : MonoBehaviour
     private float moveX;
 
     private Vector3 rollDirection;
-    private Vector3 moveDirection;
+    private Vector3 velocity;
 
-    public float moveSpeed;
-    public float crouchSpeed;
+    public float jumpSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +39,8 @@ public class Ayan1ControllerTest2 : MonoBehaviour
         moveX = Input.GetAxis("Horizontal");
 
         Roll();
-        Crouch();
+        Jump();
+        
     }
 
     private async void Roll()
@@ -71,27 +71,26 @@ public class Ayan1ControllerTest2 : MonoBehaviour
 
     }
 
-    private void Crouch()
+    private void Jump()
     {
-
-        moveSpeed = crouchSpeed;
 
         if (isGrounded)
         {
-            if (Input.GetKey(KeyCode.LeftControl))
+
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                anim.SetBool("Crouch", true);
+                anim.SetBool("Jump", true);
+                velocity.y = Mathf.Sqrt(jumpSpeed * -2 * gravity);
             }
 
-            if (moveSpeed == 0 && Input.GetKey(KeyCode.LeftControl))
+            else if (!Input.GetKeyDown(KeyCode.Space))
             {
-                anim.SetBool("CrouchIdle", true);
+                anim.SetBool("Jump", false);
             }
-
-            moveDirection *= moveSpeed;
         }
 
-        controller.Move(moveDirection * Time.deltaTime);
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
 
     }
 }

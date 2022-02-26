@@ -11,15 +11,12 @@ public class Ayan1ControllerTest : MonoBehaviour
     public float moveSpeed;
     public float walkSpeed;
     public float runSpeed;
-    public float jumpSpeed;
 
     public float ySpeed;
 
     private Vector3 moveDirection;
-    private Vector3 velocity;
 
     public bool isGrounded;
-    public bool isRolling;
 
     public float groundCheckDistance;
     public LayerMask groundMask;
@@ -30,9 +27,6 @@ public class Ayan1ControllerTest : MonoBehaviour
 
     private float moveZ;
     private float moveX;
-
-    private Vector3 rollDirection;
-    private Vector3 rollCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -51,19 +45,10 @@ public class Ayan1ControllerTest : MonoBehaviour
 
     }
 
-    //IEnumerable BlinkTimer()
-    //{
-    //    yield return new WaitForSeconds(1);
-    //}
-
     private void Move()
     {
 
-
         isGrounded = Physics.CheckSphere(transform.position, groundCheckDistance, groundMask);
-
-
-
 
         moveZ = Input.GetAxis("Vertical");
         moveX = Input.GetAxis("Horizontal");
