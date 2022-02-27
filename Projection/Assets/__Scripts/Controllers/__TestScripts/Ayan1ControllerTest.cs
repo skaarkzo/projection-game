@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using System;
-using System.Threading.Tasks;
-
 public class Ayan1ControllerTest : MonoBehaviour
 {
 
@@ -13,11 +10,7 @@ public class Ayan1ControllerTest : MonoBehaviour
     public float runSpeed;
 
     private Vector3 velocity;
-    public float jumpSpeed;
-
-    public float ySpeed;
-
-    private float timeStamp;
+    public float jumpHeight;
 
     private Vector3 moveDirection;
 
@@ -33,20 +26,42 @@ public class Ayan1ControllerTest : MonoBehaviour
     private float moveZ;
     private float moveX;
 
+    public bool isIdle;
+
     // Start is called before the first frame update
     void Start()
     {
+
         controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
 
-
-
         Move();
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            StabRight();
+        }
+
+        else if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            StabLeft();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && isIdle == true)
+        {
+            StabRightIdle();
+        }
+
+        else if (Input.GetKeyDown(KeyCode.Mouse1) && isIdle == true)
+        {
+            StabLeftIdle();
+        }
 
     }
 
@@ -58,10 +73,10 @@ public class Ayan1ControllerTest : MonoBehaviour
         moveZ = Input.GetAxis("Vertical");
         moveX = Input.GetAxis("Horizontal");
 
-        //if (isGrounded && velocity.y < 0)
-        //{
-        //    velocity.y = -2f;
-        //}
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
 
         moveDirection = new Vector3(moveX, 0, moveZ);
         moveDirection = transform.TransformDirection(moveDirection);
@@ -106,31 +121,16 @@ public class Ayan1ControllerTest : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        //ySpeed += gravity * Time.deltaTime;
-
-        //if (isGrounded)
-        //{
-
-        //    ySpeed = -2f;
-
-        //    if (Input.GetKey(KeyCode.Space))
-        //    {
-        //        ySpeed = jumpSpeed;
-        //    }
-        //}
-
-        //Jump();
-
-        //controller.Move(velocity * Time.deltaTime);
     }
 
     private void Idle()
     {
+
         anim.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
         anim.SetFloat("Horizontal", 0, 0.1f, Time.deltaTime);
+        isIdle = true;
+
     }
-
-
 
     private void Walk()
     {
@@ -149,10 +149,14 @@ public class Ayan1ControllerTest : MonoBehaviour
         {
             moveSpeed = walkSpeed - 3;
         }
+
+        isIdle = false;
+
     }
 
     private void Run()
     {
+
         moveSpeed = runSpeed;
 
         this.anim.SetFloat("Vertical", moveZ, 0.1f, Time.deltaTime);
@@ -167,21 +171,45 @@ public class Ayan1ControllerTest : MonoBehaviour
         {
             moveSpeed = runSpeed - 4;
         }
+
+        isIdle = false;
+
     }
 
     private void Jump()
     {
 
         anim.SetBool("Jump", true);
-        velocity.y = Mathf.Sqrt(jumpSpeed * -2 * gravity);
+        velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
 
     }
 
-    //private void Jump()
-    //{
-    //    velocity = moveDirection * moveSpeed;
+    private void StabRight()
+    {
 
-    //    velocity.y = ySpeed;
-    //    anim.SetBool("Jump", !isGrounded);
-    //}
+        anim.SetTrigger("StabRight");
+
+    }
+
+    private void StabLeft()
+    {
+
+        anim.SetTrigger("StabLeft");
+
+    }
+
+    private void StabRightIdle()
+    {
+
+        anim.SetTrigger("StabRightIdle");
+
+        
+    }
+
+    private void StabLeftIdle()
+    {
+
+        anim.SetTrigger("StabLeftIdle");
+
+    }
 }
