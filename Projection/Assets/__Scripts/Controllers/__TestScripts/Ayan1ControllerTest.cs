@@ -12,7 +12,12 @@ public class Ayan1ControllerTest : MonoBehaviour
     public float walkSpeed;
     public float runSpeed;
 
+    private Vector3 velocity;
+    public float jumpSpeed;
+
     public float ySpeed;
+
+    private float timeStamp;
 
     private Vector3 moveDirection;
 
@@ -82,10 +87,24 @@ public class Ayan1ControllerTest : MonoBehaviour
             }
 
             moveDirection *= moveSpeed;
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Jump();
+
+            }
+
+            else if (!Input.GetKeyDown(KeyCode.Space))
+            {
+                anim.SetBool("Jump", false);
+            }
         }
 
 
         controller.Move(moveDirection * Time.deltaTime);
+
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
 
         //ySpeed += gravity * Time.deltaTime;
 
@@ -148,6 +167,14 @@ public class Ayan1ControllerTest : MonoBehaviour
         {
             moveSpeed = runSpeed - 4;
         }
+    }
+
+    private void Jump()
+    {
+
+        anim.SetBool("Jump", true);
+        velocity.y = Mathf.Sqrt(jumpSpeed * -2 * gravity);
+
     }
 
     //private void Jump()

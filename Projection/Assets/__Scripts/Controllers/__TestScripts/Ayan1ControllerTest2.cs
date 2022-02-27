@@ -11,6 +11,8 @@ public class Ayan1ControllerTest2 : MonoBehaviour
     private CharacterController controller;
     private Animator anim;
 
+    private float timeStamp;
+
     public bool isGrounded;
     public float groundCheckDistance;
     public LayerMask groundMask;
@@ -39,8 +41,11 @@ public class Ayan1ControllerTest2 : MonoBehaviour
         moveX = Input.GetAxis("Horizontal");
 
         Roll();
-        Jump();
-        
+
+        //if(timeStamp <= Time.time)
+        //{
+        //    Jump();
+        //}  
     }
 
     private async void Roll()
@@ -71,26 +76,27 @@ public class Ayan1ControllerTest2 : MonoBehaviour
 
     }
 
-    private void Jump()
-    {
+    
+    //private void Jump()
+    //{
 
-        if (isGrounded)
-        {
+    //    if (isGrounded)
+    //    {
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                anim.SetBool("Jump", true);
-                velocity.y = Mathf.Sqrt(jumpSpeed * -2 * gravity);
-            }
+    //        if (Input.GetKeyDown(KeyCode.Space))
+    //        {
+    //            anim.SetBool("Jump", true);
+    //            velocity.y = Mathf.Sqrt(jumpSpeed * -2 * gravity);
+    //        }
 
-            else if (!Input.GetKeyDown(KeyCode.Space))
-            {
-                anim.SetBool("Jump", false);
-            }
-        }
+    //        else if (!Input.GetKeyDown(KeyCode.Space))
+    //        {
+    //            anim.SetBool("Jump", false);
+    //        }
+    //    }
 
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+    //    velocity.y += gravity * Time.deltaTime;
+    //    controller.Move(velocity * Time.deltaTime);
 
-    }
+    //}
 }
