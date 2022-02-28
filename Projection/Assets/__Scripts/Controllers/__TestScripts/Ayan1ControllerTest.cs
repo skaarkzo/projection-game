@@ -27,6 +27,7 @@ public class Ayan1ControllerTest : MonoBehaviour
     private float moveX;
 
     public bool isIdle;
+    public bool isMoving;
 
     // Start is called before the first frame update
     void Start()
@@ -129,6 +130,7 @@ public class Ayan1ControllerTest : MonoBehaviour
         anim.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
         anim.SetFloat("Horizontal", 0, 0.1f, Time.deltaTime);
         isIdle = true;
+        isMoving = false;
 
     }
 
@@ -151,6 +153,7 @@ public class Ayan1ControllerTest : MonoBehaviour
         }
 
         isIdle = false;
+        isMoving = true;
 
     }
 
@@ -173,6 +176,7 @@ public class Ayan1ControllerTest : MonoBehaviour
         }
 
         isIdle = false;
+        isMoving = true;
 
     }
 
@@ -203,7 +207,6 @@ public class Ayan1ControllerTest : MonoBehaviour
 
         anim.SetTrigger("StabRightIdle");
 
-        
     }
 
     private void StabLeftIdle()
