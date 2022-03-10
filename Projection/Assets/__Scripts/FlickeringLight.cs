@@ -6,7 +6,7 @@ public class FlickeringLight : MonoBehaviour
 {
 
     public bool isFlickering = false;
-    public float timeDelay;
+    private float timeDelay;
 
     // Update is called once per frame
     void Update()
