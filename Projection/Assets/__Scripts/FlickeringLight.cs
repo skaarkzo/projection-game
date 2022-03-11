@@ -15,8 +15,6 @@ public class FlickeringLight : MonoBehaviour
         {
             StartCoroutine(FlickerLight());
         }
-        
-
     }
 
     IEnumerator FlickerLight()
@@ -29,7 +27,6 @@ public class FlickeringLight : MonoBehaviour
         timeDelay = 1;
         yield return new WaitForSeconds(timeDelay);
         isFlickering = false;
-
     }
 
 }

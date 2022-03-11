@@ -156,6 +156,7 @@ GameObject:
   - component: {fileID: 824106269615858357}
   - component: {fileID: 796928486919065715}
   - component: {fileID: 8911273895192826926}
+  - component: {fileID: 654689627785937847}
   m_Layer: 0
   m_Name: scifi-neon-screen (5)
   m_TagString: Untagged
@@ -241,6 +242,20 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 775d2c3cd6260e6418aeff40fdddabe6, type: 3}
+--- !u!114 &654689627785937847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2250603438582906519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542d9c0ffe67a664caf9da024755239e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brightRed: {fileID: 2100000, guid: ecce1a1895e37524282423faddfd60c9, type: 2}
+  darkRed: {fileID: 2100000, guid: 4664b9801ada1564c92dd2b07fabe4f2, type: 2}
 --- !u!1 &3567557764200666956
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,6 +268,7 @@ GameObject:
   - component: {fileID: 6164491372915766708}
   - component: {fileID: 141524867873056644}
   - component: {fileID: 2641524359447818844}
+  - component: {fileID: 5129381439959666161}
   m_Layer: 0
   m_Name: scifi-neon-screen (1)
   m_TagString: Untagged
@@ -338,6 +354,20 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 775d2c3cd6260e6418aeff40fdddabe6, type: 3}
+--- !u!114 &5129381439959666161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3567557764200666956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542d9c0ffe67a664caf9da024755239e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brightRed: {fileID: 2100000, guid: ecce1a1895e37524282423faddfd60c9, type: 2}
+  darkRed: {fileID: 2100000, guid: 4664b9801ada1564c92dd2b07fabe4f2, type: 2}
 --- !u!1 &5221411710999496237
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,6 +380,7 @@ GameObject:
   - component: {fileID: 5200416071615143963}
   - component: {fileID: 6007941183696176826}
   - component: {fileID: 4733142117258237243}
+  - component: {fileID: 2708454131192490866}
   m_Layer: 0
   m_Name: scifi-neon-screen (3)
   m_TagString: Untagged
@@ -435,6 +466,20 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 775d2c3cd6260e6418aeff40fdddabe6, type: 3}
+--- !u!114 &2708454131192490866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5221411710999496237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542d9c0ffe67a664caf9da024755239e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brightRed: {fileID: 2100000, guid: ecce1a1895e37524282423faddfd60c9, type: 2}
+  darkRed: {fileID: 2100000, guid: 4664b9801ada1564c92dd2b07fabe4f2, type: 2}
 --- !u!1 &5798291638183829704
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,6 +492,7 @@ GameObject:
   - component: {fileID: 7115319668916313077}
   - component: {fileID: 4592633878250286306}
   - component: {fileID: 7470805032911407723}
+  - component: {fileID: 223929228222287620}
   m_Layer: 0
   m_Name: scifi-neon-screen
   m_TagString: Untagged
@@ -532,6 +578,20 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 775d2c3cd6260e6418aeff40fdddabe6, type: 3}
+--- !u!114 &223929228222287620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5798291638183829704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542d9c0ffe67a664caf9da024755239e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brightRed: {fileID: 2100000, guid: ecce1a1895e37524282423faddfd60c9, type: 2}
+  darkRed: {fileID: 2100000, guid: 4664b9801ada1564c92dd2b07fabe4f2, type: 2}
 --- !u!1 &7047010486297579529
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,6 +604,7 @@ GameObject:
   - component: {fileID: 454720065769168293}
   - component: {fileID: 4088046414723503025}
   - component: {fileID: 8880643841500912818}
+  - component: {fileID: 4121337387466951911}
   m_Layer: 0
   m_Name: scifi-neon-screen (2)
   m_TagString: Untagged
@@ -629,6 +690,20 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 775d2c3cd6260e6418aeff40fdddabe6, type: 3}
+--- !u!114 &4121337387466951911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7047010486297579529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542d9c0ffe67a664caf9da024755239e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brightRed: {fileID: 2100000, guid: ecce1a1895e37524282423faddfd60c9, type: 2}
+  darkRed: {fileID: 2100000, guid: 4664b9801ada1564c92dd2b07fabe4f2, type: 2}
 --- !u!1 &8816794464382701949
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,6 +716,7 @@ GameObject:
   - component: {fileID: 6705781333370382589}
   - component: {fileID: 2677762469062129687}
   - component: {fileID: 1853667606497293399}
+  - component: {fileID: 1449312852070978861}
   m_Layer: 0
   m_Name: scifi-neon-screen (4)
   m_TagString: Untagged
@@ -726,3 +802,17 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 775d2c3cd6260e6418aeff40fdddabe6, type: 3}
+--- !u!114 &1449312852070978861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8816794464382701949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542d9c0ffe67a664caf9da024755239e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brightRed: {fileID: 2100000, guid: ecce1a1895e37524282423faddfd60c9, type: 2}
+  darkRed: {fileID: 2100000, guid: 4664b9801ada1564c92dd2b07fabe4f2, type: 2}
