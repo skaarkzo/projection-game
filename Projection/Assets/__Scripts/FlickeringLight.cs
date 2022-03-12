@@ -8,6 +8,13 @@ public class FlickeringLight : MonoBehaviour
     public bool isFlickering = false;
     private float timeDelay;
 
+    private void Start()
+    {
+
+    }
+
+
+
     // Update is called once per frame
     void Update()
     {
@@ -15,6 +22,9 @@ public class FlickeringLight : MonoBehaviour
         {
             StartCoroutine(FlickerLight());
         }
+
+      
+
     }
 
     IEnumerator FlickerLight()
@@ -27,6 +37,8 @@ public class FlickeringLight : MonoBehaviour
         timeDelay = 1;
         yield return new WaitForSeconds(timeDelay);
         isFlickering = false;
+        
     }
 
+    
 }

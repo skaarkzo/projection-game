@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 824106269615858357}
   - component: {fileID: 796928486919065715}
   - component: {fileID: 8911273895192826926}
-  - component: {fileID: 654689627785937847}
+  - component: {fileID: 925475814595158525}
   m_Layer: 0
   m_Name: scifi-neon-screen (5)
   m_TagString: Untagged
@@ -242,7 +242,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 775d2c3cd6260e6418aeff40fdddabe6, type: 3}
---- !u!114 &654689627785937847
+--- !u!114 &925475814595158525
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -254,8 +254,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542d9c0ffe67a664caf9da024755239e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brightRed: {fileID: 2100000, guid: ecce1a1895e37524282423faddfd60c9, type: 2}
-  darkRed: {fileID: 2100000, guid: 4664b9801ada1564c92dd2b07fabe4f2, type: 2}
+  material:
+  - {fileID: 2100000, guid: 48b31daa83ddb854fadd9402702394e4, type: 2}
+  - {fileID: 2100000, guid: ecce1a1895e37524282423faddfd60c9, type: 2}
+  x: 0
+  lightOn: 0
 --- !u!1 &3567557764200666956
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,7 +271,7 @@ GameObject:
   - component: {fileID: 6164491372915766708}
   - component: {fileID: 141524867873056644}
   - component: {fileID: 2641524359447818844}
-  - component: {fileID: 5129381439959666161}
+  - component: {fileID: 8774077201043655482}
   m_Layer: 0
   m_Name: scifi-neon-screen (1)
   m_TagString: Untagged
@@ -354,7 +357,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 775d2c3cd6260e6418aeff40fdddabe6, type: 3}
---- !u!114 &5129381439959666161
+--- !u!114 &8774077201043655482
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -366,8 +369,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542d9c0ffe67a664caf9da024755239e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brightRed: {fileID: 2100000, guid: ecce1a1895e37524282423faddfd60c9, type: 2}
-  darkRed: {fileID: 2100000, guid: 4664b9801ada1564c92dd2b07fabe4f2, type: 2}
+  material:
+  - {fileID: 2100000, guid: 48b31daa83ddb854fadd9402702394e4, type: 2}
+  - {fileID: 2100000, guid: ecce1a1895e37524282423faddfd60c9, type: 2}
+  x: 0
+  lightOn: 0
 --- !u!1 &5221411710999496237
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,7 +386,7 @@ GameObject:
   - component: {fileID: 5200416071615143963}
   - component: {fileID: 6007941183696176826}
   - component: {fileID: 4733142117258237243}
-  - component: {fileID: 2708454131192490866}
+  - component: {fileID: 9100329948618201742}
   m_Layer: 0
   m_Name: scifi-neon-screen (3)
   m_TagString: Untagged
@@ -466,7 +472,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 775d2c3cd6260e6418aeff40fdddabe6, type: 3}
---- !u!114 &2708454131192490866
+--- !u!114 &9100329948618201742
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -478,8 +484,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542d9c0ffe67a664caf9da024755239e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brightRed: {fileID: 2100000, guid: ecce1a1895e37524282423faddfd60c9, type: 2}
-  darkRed: {fileID: 2100000, guid: 4664b9801ada1564c92dd2b07fabe4f2, type: 2}
+  material:
+  - {fileID: 2100000, guid: 48b31daa83ddb854fadd9402702394e4, type: 2}
+  - {fileID: 2100000, guid: ecce1a1895e37524282423faddfd60c9, type: 2}
+  x: 0
+  lightOn: 0
 --- !u!1 &5798291638183829704
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,7 +501,7 @@ GameObject:
   - component: {fileID: 7115319668916313077}
   - component: {fileID: 4592633878250286306}
   - component: {fileID: 7470805032911407723}
-  - component: {fileID: 223929228222287620}
+  - component: {fileID: 2457246256096130957}
   m_Layer: 0
   m_Name: scifi-neon-screen
   m_TagString: Untagged
@@ -578,7 +587,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 775d2c3cd6260e6418aeff40fdddabe6, type: 3}
---- !u!114 &223929228222287620
+--- !u!114 &2457246256096130957
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -590,8 +599,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542d9c0ffe67a664caf9da024755239e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brightRed: {fileID: 2100000, guid: ecce1a1895e37524282423faddfd60c9, type: 2}
-  darkRed: {fileID: 2100000, guid: 4664b9801ada1564c92dd2b07fabe4f2, type: 2}
+  material:
+  - {fileID: 2100000, guid: 48b31daa83ddb854fadd9402702394e4, type: 2}
+  - {fileID: 2100000, guid: ecce1a1895e37524282423faddfd60c9, type: 2}
+  x: 0
+  lightOn: 0
 --- !u!1 &7047010486297579529
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,7 +616,7 @@ GameObject:
   - component: {fileID: 454720065769168293}
   - component: {fileID: 4088046414723503025}
   - component: {fileID: 8880643841500912818}
-  - component: {fileID: 4121337387466951911}
+  - component: {fileID: 2574870265443761144}
   m_Layer: 0
   m_Name: scifi-neon-screen (2)
   m_TagString: Untagged
@@ -690,7 +702,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 775d2c3cd6260e6418aeff40fdddabe6, type: 3}
---- !u!114 &4121337387466951911
+--- !u!114 &2574870265443761144
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -702,8 +714,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542d9c0ffe67a664caf9da024755239e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brightRed: {fileID: 2100000, guid: ecce1a1895e37524282423faddfd60c9, type: 2}
-  darkRed: {fileID: 2100000, guid: 4664b9801ada1564c92dd2b07fabe4f2, type: 2}
+  material:
+  - {fileID: 2100000, guid: 48b31daa83ddb854fadd9402702394e4, type: 2}
+  - {fileID: 2100000, guid: ecce1a1895e37524282423faddfd60c9, type: 2}
+  x: 0
+  lightOn: 0
 --- !u!1 &8816794464382701949
 GameObject:
   m_ObjectHideFlags: 0
@@ -716,7 +731,7 @@ GameObject:
   - component: {fileID: 6705781333370382589}
   - component: {fileID: 2677762469062129687}
   - component: {fileID: 1853667606497293399}
-  - component: {fileID: 1449312852070978861}
+  - component: {fileID: 8430170254842886370}
   m_Layer: 0
   m_Name: scifi-neon-screen (4)
   m_TagString: Untagged
@@ -802,7 +817,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 775d2c3cd6260e6418aeff40fdddabe6, type: 3}
---- !u!114 &1449312852070978861
+--- !u!114 &8430170254842886370
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -814,5 +829,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542d9c0ffe67a664caf9da024755239e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brightRed: {fileID: 2100000, guid: ecce1a1895e37524282423faddfd60c9, type: 2}
-  darkRed: {fileID: 2100000, guid: 4664b9801ada1564c92dd2b07fabe4f2, type: 2}
+  material:
+  - {fileID: 2100000, guid: 48b31daa83ddb854fadd9402702394e4, type: 2}
+  - {fileID: 2100000, guid: ecce1a1895e37524282423faddfd60c9, type: 2}
+  x: 0
+  lightOn: 0

@@ -4,34 +4,52 @@ using UnityEngine;
 
 public class ColourChange : MonoBehaviour
 {
-    public Material brightRed;
-    public Material darkRed;
+    public Material[] material;
+    public int x;
+    Renderer rend;
 
+    Renderer[] children;
+
+    public bool lightOn = false;
+    private float timeDelay;
 
     private void Start()
     {
 
-        Invoke("m1", 1.0f);
+        x = 0;
+        rend = GetComponent<Renderer>();
+        rend.enabled = true;
+        rend.sharedMaterial = material[x];
 
     }
 
     // Update is called once per frame
+
     void Update()
     {
 
+        if (lightOn == false)
+        {
+            StartCoroutine(LightOn());
+        }
+
+        rend.sharedMaterial = material[x];
+
     }
 
 
-    void m1()
+    IEnumerator LightOn()
     {
-        GetComponent<Renderer>().material = brightRed;
-        Invoke("m2", 1.0f);
+        lightOn = true;
+        x = 0;
+        timeDelay = 1;
+        yield return new WaitForSeconds(timeDelay);
+        x = 1;
+        timeDelay = 1;
+        yield return new WaitForSeconds(timeDelay);
+        lightOn = false;
+
     }
 
-    void m2()
-    {
-        GetComponent<Renderer>().material = darkRed;
-        Invoke("m1", 1.0f);
-    }
 
 }
