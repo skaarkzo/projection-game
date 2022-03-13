@@ -11,6 +11,8 @@ public class Ayan1ControllerTest2 : MonoBehaviour
     private CharacterController controller;
     private Animator anim;
 
+
+
     public bool isGrounded;
     public float groundCheckDistance;
     public LayerMask groundMask;
@@ -27,6 +29,7 @@ public class Ayan1ControllerTest2 : MonoBehaviour
 
         controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
+
 
     }
 
