@@ -5,12 +5,10 @@ using UnityEngine;
 public class NPCTrigger : MonoBehaviour
 {
 
-    private GameObject triggeringNPC;
+    private GameObject triggeringNPC = null;
     private bool triggering;
 
-    private bool standTrigger;
-
-    private Animator anim;
+    private static Animator anim;
 
     private Vector3 playerPos;
     private Vector3 npcPos;
@@ -43,10 +41,12 @@ public class NPCTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.tag == "BlacksmithNPC")
         {
             triggering = true;
             triggeringNPC = other.gameObject;
+            anim = triggeringNPC.GetComponent<Animator>();
             anim.SetTrigger("Wave");
         }
 
@@ -54,9 +54,9 @@ public class NPCTrigger : MonoBehaviour
         {
             triggering = true;
             triggeringNPC = other.gameObject;
-            standTrigger = true;
+            anim = triggeringNPC.GetComponent<Animator>();
             anim.SetTrigger("StandTrigger");
-            anim.SetBool("Sit", false);
+            //anim.SetBool("Sit", false);
         }
     }
 
