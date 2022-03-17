@@ -56,14 +56,14 @@ public class Ayan1ControllerTest2 : MonoBehaviour
             {
 
                 anim.SetTrigger("Roll");
-                await Task.Delay(500);
+                await Task.Delay(150);
 
                 controller.height = 0.5f;
                 controller.center = new Vector3(0, 0.5f, 0);
 
                 controller.Move(rollDirection * Time.deltaTime);
 
-                await Task.Delay(1600);
+                await Task.Delay(1000);
 
                 controller.height = 1.79f;
                 controller.center = new Vector3(0, 1, 0);
