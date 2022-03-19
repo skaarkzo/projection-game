@@ -15,6 +15,7 @@ public class CharacterControllerAyan1 : MonoBehaviour
     private Vector3 velocity;
 
     public bool isGrounded;
+    public float weight;
     public float groundCheckDistance;
     public LayerMask groundMask;
     public float gravity;
@@ -39,7 +40,7 @@ public class CharacterControllerAyan1 : MonoBehaviour
     {
 
         isGrounded = Physics.CheckSphere(transform.position, groundCheckDistance, groundMask);
-
+        
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
