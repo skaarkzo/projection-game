@@ -8,9 +8,7 @@ public class NPCTrigger : MonoBehaviour
     private GameObject triggeringNPC;
     private bool triggering;
 
-    private bool standTrigger;
-
-    private Animator anim;
+    private static Animator anim;
 
     private Vector3 playerPos;
     private Vector3 npcPos;
@@ -47,16 +45,22 @@ public class NPCTrigger : MonoBehaviour
         {
             triggering = true;
             triggeringNPC = other.gameObject;
+            anim = triggeringNPC.GetComponent<Animator>();
             anim.SetTrigger("Wave");
+
         }
 
         else if (other.tag == "MerchantNPC")
         {
             triggering = true;
             triggeringNPC = other.gameObject;
-            standTrigger = true;
+            anim = triggeringNPC.GetComponent<Animator>();
             anim.SetTrigger("StandTrigger");
-            anim.SetBool("Sit", false);
+
+            if (triggering)
+            {
+                anim.SetBool("Sit", false);
+            }
         }
     }
 
