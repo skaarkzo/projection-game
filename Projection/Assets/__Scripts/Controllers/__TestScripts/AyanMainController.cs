@@ -25,11 +25,20 @@ public class AyanMainController : MonoBehaviour
     public float turnSmoothTime = 0.1f;
     private float turnSmoothVelocity;
 
+    public Transform groundCheck;
+    public float groundCheckDistance;
+    public LayerMask groundMask;
+    
+    public float gravity = -9.81f;
+    private Vector3 velocity;
+
+    public bool isGrounded;
     public bool look = true;
 
     // Start is called before the first frame update
     void Start()
     {
+        controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -58,17 +67,23 @@ public class AyanMainController : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-
     }
 
     public void Move()
     {
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckDistance, groundMask);
+
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+
         moveZ = Input.GetAxis("Vertical");
         moveX = Input.GetAxis("Horizontal");
 
         moveDirection = new Vector3(moveX, 0, moveZ).normalized;
 
-        if (look)
+        if (isGrounded)
         {
             if (moveDirection == Vector3.zero)
             {
@@ -84,9 +99,18 @@ public class AyanMainController : MonoBehaviour
             {
                 Run();
             }
-        }       
+
+            if (Input.GetKey("q"))
+            {
+                Roll();
+            }
+        }
 
         controller.Move(direction.normalized * moveSpeed * Time.deltaTime);
+
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+
     }
 
     private void CameraMovement()
@@ -100,8 +124,8 @@ public class AyanMainController : MonoBehaviour
 
     private void Idle()
     {
-        anim.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
-        anim.SetFloat("Horizontal", 0, 0.1f, Time.deltaTime);
+        this.anim.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
+        this.anim.SetFloat("Horizontal", 0, 0.1f, Time.deltaTime);
         direction = Vector3.zero;
     }
 
@@ -123,5 +147,10 @@ public class AyanMainController : MonoBehaviour
 
         this.anim.SetFloat("Vertical", moveZ, 0.1f, Time.deltaTime);
         this.anim.SetFloat("Horizontal", moveX, 0.1f, Time.deltaTime);
+    }
+
+    private void Roll()
+    {
+        this.anim.SetTrigger("Roll");
     }
 }
