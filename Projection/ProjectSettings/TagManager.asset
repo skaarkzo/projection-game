@@ -10,6 +10,7 @@ TagManager:
   - Level1RDoor
   - BlacksmithNPC
   - MerchantNPC
+  - KnightNPC
   layers:
   - Default
   - TransparentFX
