@@ -17,10 +17,13 @@ public class EnemyController : MonoBehaviour
 
     private Animator anim;
 
+    private GameObject playerObject;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        playerObject = GameObject.Find("Player");
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
@@ -67,10 +70,23 @@ public class EnemyController : MonoBehaviour
         anim.SetBool("Attack", true);
     }
 
+    private void inflictDamage()
+    {
+        if (triggering)
+        {
+            playerObject.GetComponent<Ayan1ControllerTest>().TakeDamage(damage);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        other.gameObject.GetComponent<Ayan1ControllerTest>().TakeDamage(damage);
-        Debug.Log("Take DMG");
+        triggering = true;
+        Debug.Log("trigerring");
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        triggering = false;
     }
 
     void OnDrawGizmosSelected()
