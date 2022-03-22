@@ -254,5 +254,10 @@ public class Ayan1ControllerTest : MonoBehaviour
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+
+        if(currentHealth == 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
