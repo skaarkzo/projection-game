@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ayan1ControllerTest : MonoBehaviour
 {
 
+    public Interactable focus;
     public float moveSpeed;
     public float walkSpeed;
     public float runSpeed;
@@ -29,10 +30,13 @@ public class Ayan1ControllerTest : MonoBehaviour
     public bool isIdle;
     public bool isMoving;
 
+    Camera cam;
+
     // Start is called before the first frame update
     void Start()
     {
 
+        cam = Camera.main;
         controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
 
@@ -46,11 +50,26 @@ public class Ayan1ControllerTest : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
             StabRight();
         }
 
         else if (Input.GetKeyDown(KeyCode.Mouse1))
         {
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                Interactable interactable = hit.collider.GetComponent<Interactable>();
+                if (interactable != null)
+                {
+                    SetFocus(interactable);
+                }
+            }
+
             StabLeft();
         }
 
@@ -64,6 +83,11 @@ public class Ayan1ControllerTest : MonoBehaviour
             StabLeftIdle();
         }
 
+    }
+
+    void SetFocus(Interactable newFocus)
+    {
+        focus = newFocus;
     }
 
     private void Move()
