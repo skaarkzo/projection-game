@@ -8,12 +8,14 @@ public class DroneController : MonoBehaviour
 
     public float lookRadius = 10f;
 
-    public int damage = 1;
-
     Transform target;
-    private GameObject triggeringNPC;
-    private bool triggering;
     NavMeshAgent agent;
+
+    public float fireRate = 1f;
+    private float fireCountdown = 0f;
+
+    public GameObject bulletPrefab;
+    public Transform firePoint;
 
     private Animator anim;
 
@@ -37,37 +39,38 @@ public class DroneController : MonoBehaviour
         if (distance <= lookRadius)
         {
             agent.SetDestination(target.position);
-            if (distance <= agent.stoppingDistance)
+            if (distance <= agent.stoppingDistance + 6)
             {
                 FaceTarget();
+                if (fireCountdown <= 0)
+                {
+                    Shoot();
+                    fireCountdown = 1f / fireRate;
+                }
             }
         }
+
+        fireCountdown -= Time.deltaTime;
+
     }
+
+    void Shoot()
+    {
+        GameObject bulletGO = (GameObject) Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Bullet bullet = bulletGO.GetComponent<Bullet>();
+
+        if (bullet != null)
+        {
+            bullet.Seek(target);
+        }
+    }
+
 
     void FaceTarget()
     {
         Vector3 direction = (target.position - transform.position).normalized; // Get direction to the player
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z)); // Get a rotation to the player
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
-    }
-
-    private void inflictDamage()
-    {
-        if (triggering)
-        {
-            playerObject.GetComponent<Ayan1ControllerTest>().TakeDamage(damage);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        triggering = true;
-        Debug.Log("trigerring");
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        triggering = false;
     }
 
     void OnDrawGizmosSelected()
