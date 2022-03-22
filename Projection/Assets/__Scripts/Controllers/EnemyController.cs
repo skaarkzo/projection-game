@@ -8,6 +8,8 @@ public class EnemyController : MonoBehaviour
 
     public float lookRadius = 10f;
 
+    public int damage = 1;
+
     Transform target;
     private GameObject triggeringNPC;
     private bool triggering;
@@ -15,10 +17,13 @@ public class EnemyController : MonoBehaviour
 
     private Animator anim;
 
+    private GameObject playerObject;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        playerObject = GameObject.Find("Player");
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
@@ -36,6 +41,8 @@ public class EnemyController : MonoBehaviour
             if(distance <= agent.stoppingDistance)
             {
                 Idle();
+                FaceTarget();
+                Attack();
             }
         }
     }
@@ -49,7 +56,8 @@ public class EnemyController : MonoBehaviour
 
     public void Walk()
     {
-        anim.SetBool("Walk", true);
+        anim.SetBool("Attack", false);
+        anim.SetBool("Walk", true);       
     }
 
     public void Idle()
@@ -57,9 +65,33 @@ public class EnemyController : MonoBehaviour
         anim.SetBool("Walk", false);
     }
 
-    /*void OnDrawGizmosSelected()
+    public void Attack()
+    {
+        anim.SetBool("Attack", true);
+    }
+
+    private void inflictDamage()
+    {
+        if (triggering)
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, lookRadius);
-        }*/
+            playerObject.GetComponent<Ayan1ControllerTest>().TakeDamage(damage);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        triggering = true;
+        Debug.Log("trigerring");
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        triggering = false;
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, lookRadius);
+    }
 }

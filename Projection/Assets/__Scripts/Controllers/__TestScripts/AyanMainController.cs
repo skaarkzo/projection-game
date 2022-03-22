@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
 
 public class AyanMainController : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class AyanMainController : MonoBehaviour
     public float walkSpeed;
     public float runSpeed;
     public float crouchSpeed;
-    public float rollSpeed;
+    public float jumpHeight;
 
     private Vector3 moveDirection;
     private Vector3 direction;
@@ -36,6 +37,7 @@ public class AyanMainController : MonoBehaviour
 
     public bool isGrounded;
     public bool look = true;
+    public bool isIdle;
 
     // Start is called before the first frame update
     void Start()
@@ -111,6 +113,11 @@ public class AyanMainController : MonoBehaviour
             {
                 Crouch();
             }
+
+            if (moveDirection.magnitude >= 0 && Input.GetKeyDown(KeyCode.Space))
+            {
+                Jump();
+            }
         }
 
         controller.Move(direction.normalized * moveSpeed * Time.deltaTime);
@@ -131,6 +138,8 @@ public class AyanMainController : MonoBehaviour
 
     private void Idle()
     {
+        isIdle = true;
+
         this.anim.SetBool("CrouchWalk", false);
         this.anim.SetBool("Crouch", false);
 
@@ -141,6 +150,8 @@ public class AyanMainController : MonoBehaviour
 
     private void Walk()
     {
+        isIdle = false;
+
         moveSpeed = walkSpeed;
 
         CameraMovement();
@@ -153,6 +164,7 @@ public class AyanMainController : MonoBehaviour
 
     private void Run()
     {
+        isIdle = false;
         moveSpeed = runSpeed;
 
         CameraMovement();
@@ -165,6 +177,7 @@ public class AyanMainController : MonoBehaviour
 
     private void Crouch()
     {
+        isIdle = false;
         moveSpeed = crouchSpeed;
 
         CameraMovement();
@@ -176,11 +189,30 @@ public class AyanMainController : MonoBehaviour
 
     private void CrouchIdle()
     {
+        isIdle = true;
         this.anim.SetBool("Crouch", true);
         this.anim.SetBool("CrouchWalk", false);
 
         CameraMovement();
 
         direction = Vector3.zero;
+    }
+
+    private async void Jump()
+    { 
+
+        if (isIdle)
+        {
+            this.anim.SetTrigger("JumpIdle");
+            await Task.Delay(500);
+        }
+
+        else
+        {
+            this.anim.SetTrigger("JumpMove");
+        }
+
+        velocity.y = Mathf.Sqrt(jumpHeight * -6 * gravity);
+
     }
 }
