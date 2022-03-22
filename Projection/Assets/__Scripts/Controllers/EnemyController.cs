@@ -32,6 +32,11 @@ public class EnemyController : MonoBehaviour
         if (distance <= lookRadius)
         {
             agent.SetDestination(target.position);
+            Walk();
+            if(distance <= agent.stoppingDistance)
+            {
+                Idle();
+            }
         }
     }
     
@@ -50,31 +55,6 @@ public class EnemyController : MonoBehaviour
     public void Idle()
     {
         anim.SetBool("Walk", false);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            triggering = true;
-            triggeringNPC = this.gameObject;
-            anim = triggeringNPC.GetComponent<Animator>();
-            if (triggering)
-            {
-                anim.SetBool("Walk", true);
-            }
-            
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            triggering = false;
-            triggeringNPC = null;
-            anim.SetBool("Walk", false);
-        }
     }
 
     /*void OnDrawGizmosSelected()
