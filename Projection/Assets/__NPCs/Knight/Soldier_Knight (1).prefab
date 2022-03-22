@@ -818,7 +818,6 @@ GameObject:
   - component: {fileID: 2315864661565250700}
   - component: {fileID: 3127831371084088881}
   - component: {fileID: 3127831371084088883}
-  - component: {fileID: 3127831371084088880}
   m_Layer: 0
   m_Name: Soldier_Knight (1)
   m_TagString: KnightNPC
@@ -874,19 +873,6 @@ CapsuleCollider:
   m_Radius: 0.3
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
---- !u!65 &3127831371084088880
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3127831371084088886}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 10, y: 1, z: 10}
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &3607467072056432604
 GameObject:
