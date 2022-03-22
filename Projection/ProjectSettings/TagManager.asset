@@ -4,41 +4,29 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Level1_Door
-  - Level1Door
-  - Level1LDoor
-  - Level1RDoor
-  - BlacksmithNPC
   - MerchantNPC
-<<<<<<< Updated upstream
-  - KnightNPC
-=======
-  - 3Door1-R
-  - 3Door1-L
-  - 3Door1-T
-  - Doors
->>>>>>> Stashed changes
+  - RobotNPC
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Player
+  - 
   - Water
   - UI
-  - Plane
-  - Floor
-  - Walls
-  - Doors
-  - Windows
-  - Ceiling
-  - Time Travel Room
-  - Vehicles
-  - Objects
-  - Walls Level 2
-  - Walls Level 3
-  - Nothing
-  - Terrain
-  - Wall Light
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
