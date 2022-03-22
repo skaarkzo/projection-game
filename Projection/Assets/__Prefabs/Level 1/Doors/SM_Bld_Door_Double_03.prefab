@@ -454,5 +454,5 @@ MonoBehaviour:
   Speed: 1
   RotationAmount: 90
   ForwardDirection: 0
-  SlideDirection: {x: 1.25, y: 0, z: -1}
+  SlideDirection: {x: 1.25, y: 0, z: 0}
   SlideAmount: 1.9
