@@ -13,6 +13,9 @@ public class Ayan1ControllerTest : MonoBehaviour
     private Vector3 velocity;
     public float jumpHeight;
 
+    public int maxHealth = 100;
+    public int currentHealth;
+
     private Vector3 moveDirection;
 
     public bool isGrounded;
@@ -30,12 +33,15 @@ public class Ayan1ControllerTest : MonoBehaviour
     public bool isIdle;
     public bool isMoving;
 
+    public HealthBar healthBar;
+
     Camera cam;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
         cam = Camera.main;
         controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
@@ -52,6 +58,11 @@ public class Ayan1ControllerTest : MonoBehaviour
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                //
+            }
 
             StabRight();
         }
@@ -150,7 +161,6 @@ public class Ayan1ControllerTest : MonoBehaviour
 
     private void Idle()
     {
-
         anim.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
         anim.SetFloat("Horizontal", 0, 0.1f, Time.deltaTime);
         isIdle = true;
@@ -238,5 +248,11 @@ public class Ayan1ControllerTest : MonoBehaviour
 
         anim.SetTrigger("StabLeftIdle");
 
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
     }
 }

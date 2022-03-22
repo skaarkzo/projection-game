@@ -8,6 +8,8 @@ public class EnemyController : MonoBehaviour
 
     public float lookRadius = 10f;
 
+    public int damage = 1;
+
     Transform target;
     private GameObject triggeringNPC;
     private bool triggering;
@@ -36,6 +38,8 @@ public class EnemyController : MonoBehaviour
             if(distance <= agent.stoppingDistance)
             {
                 Idle();
+                FaceTarget();
+                Attack();
             }
         }
     }
@@ -49,7 +53,8 @@ public class EnemyController : MonoBehaviour
 
     public void Walk()
     {
-        anim.SetBool("Walk", true);
+        anim.SetBool("Attack", false);
+        anim.SetBool("Walk", true);       
     }
 
     public void Idle()
@@ -57,9 +62,20 @@ public class EnemyController : MonoBehaviour
         anim.SetBool("Walk", false);
     }
 
-    /*void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, lookRadius);
-        }*/
+    public void Attack()
+    {
+        anim.SetBool("Attack", true);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        other.gameObject.GetComponent<Ayan1ControllerTest>().TakeDamage(damage);
+        Debug.Log("Take DMG");
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, lookRadius);
+    }
 }

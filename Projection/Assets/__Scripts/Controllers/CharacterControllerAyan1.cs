@@ -9,6 +9,9 @@ public class CharacterControllerAyan1 : MonoBehaviour
     public float walkSpeed;
     public float runSpeed;
 
+    public int maxHealth = 100;
+    public int currentHealth;
+
     public float jumpHeight;
 
     private Vector3 moveDirection;
@@ -26,6 +29,7 @@ public class CharacterControllerAyan1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentHealth = maxHealth;
         controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
     }
