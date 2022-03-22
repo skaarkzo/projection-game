@@ -7,6 +7,14 @@ TagManager:
   - MerchantNPC
   - RobotNPC
   - BlacksmithNPC
+  - Level1LDoor
+  - Level1RDoor
+  - 3Door1-R
+  - 3Door1-L
+  - 3Door1-T
+  - Collectable_Part1
+  - Collectable_Part2
+  - Collectable_Part3
   layers:
   - Default
   - TransparentFX
