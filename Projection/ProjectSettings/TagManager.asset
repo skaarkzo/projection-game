@@ -10,7 +10,14 @@ TagManager:
   - Level1RDoor
   - BlacksmithNPC
   - MerchantNPC
+<<<<<<< Updated upstream
   - KnightNPC
+=======
+  - 3Door1-R
+  - 3Door1-L
+  - 3Door1-T
+  - Doors
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX

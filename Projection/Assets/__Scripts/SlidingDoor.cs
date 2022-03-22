@@ -28,6 +28,20 @@ public class SlidingDoor : MonoBehaviour
             {
                 endpos = transform.position + new Vector3(-3, 0, 0);
             }
+
+
+            if (tag == "3Door1-L")
+            {
+                endpos = transform.position + new Vector3(0.75f, 0, 0);
+            }
+            else if (tag == "3Door1-R")
+            {
+                endpos = transform.position - new Vector3(0.75f, 0, 0);
+            }
+            else if (tag == "3Door1-T")
+            {
+                endpos = transform.position + new Vector3(0.75f, 0, 0);
+            }
         }
 
         if (transform.eulerAngles.y == 90)
