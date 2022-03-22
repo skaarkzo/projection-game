@@ -8,6 +8,8 @@ public class AyanMainController : MonoBehaviour
     public float moveSpeed;
     public float walkSpeed;
     public float runSpeed;
+    public float crouchSpeed;
+    public float rollSpeed;
 
     private Vector3 moveDirection;
     private Vector3 direction;
@@ -85,12 +87,17 @@ public class AyanMainController : MonoBehaviour
 
         if (isGrounded)
         {
-            if (moveDirection == Vector3.zero)
+            if (moveDirection == Vector3.zero && !Input.GetKey("z"))
             {
                 Idle();
             }
 
-            else if (moveDirection.magnitude >= 0.1f && !Input.GetKey(KeyCode.LeftShift))
+            else if (moveDirection == Vector3.zero && Input.GetKey("z"))
+            {
+                CrouchIdle();
+            }
+
+            else if (moveDirection.magnitude >= 0.1f && !Input.GetKey(KeyCode.LeftShift) && !Input.GetKey("z"))
             {
                 Walk();
             }
@@ -99,10 +106,10 @@ public class AyanMainController : MonoBehaviour
             {
                 Run();
             }
-
-            if (Input.GetKey("q"))
+            
+            else if (moveDirection.magnitude >= 0.1f && !Input.GetKey(KeyCode.LeftShift) && Input.GetKey("z"))
             {
-                Roll();
+                Crouch();
             }
         }
 
@@ -124,6 +131,9 @@ public class AyanMainController : MonoBehaviour
 
     private void Idle()
     {
+        this.anim.SetBool("CrouchWalk", false);
+        this.anim.SetBool("Crouch", false);
+
         this.anim.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
         this.anim.SetFloat("Horizontal", 0, 0.1f, Time.deltaTime);
         direction = Vector3.zero;
@@ -135,6 +145,8 @@ public class AyanMainController : MonoBehaviour
 
         CameraMovement();
 
+        this.anim.SetBool("CrouchWalk", false);
+        this.anim.SetBool("Crouch", false);
         this.anim.SetFloat("Vertical", moveZ / 2, 0.1f, Time.deltaTime);
         this.anim.SetFloat("Horizontal", moveX / 2, 0.1f, Time.deltaTime);
     }
@@ -145,12 +157,30 @@ public class AyanMainController : MonoBehaviour
 
         CameraMovement();
 
+        this.anim.SetBool("CrouchWalk", false);
+        this.anim.SetBool("Crouch", false);
         this.anim.SetFloat("Vertical", moveZ, 0.1f, Time.deltaTime);
         this.anim.SetFloat("Horizontal", moveX, 0.1f, Time.deltaTime);
     }
 
-    private void Roll()
+    private void Crouch()
     {
-        this.anim.SetTrigger("Roll");
+        moveSpeed = crouchSpeed;
+
+        CameraMovement();
+
+        this.anim.SetBool("Crouch", false);
+        this.anim.SetBool("CrouchWalk", true); 
+
+    }
+
+    private void CrouchIdle()
+    {
+        this.anim.SetBool("Crouch", true);
+        this.anim.SetBool("CrouchWalk", false);
+
+        CameraMovement();
+
+        direction = Vector3.zero;
     }
 }
