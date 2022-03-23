@@ -21,6 +21,7 @@ public class AyanMainController : MonoBehaviour
 
     public GameObject mainCamera;
     public GameObject aimCamera;
+    public GameObject sword;
 
     private float moveZ;
     private float moveX;
@@ -259,15 +260,18 @@ public class AyanMainController : MonoBehaviour
         {
             mainCamera.SetActive(false);
             aimCamera.SetActive(true);
+            sword.SetActive(false);
 
             this.anim.SetBool("Aim", true);
             controller.enabled = false;
+
         }
 
         else if (!Input.GetKey(KeyCode.Mouse1) && isAttacking == false)
         {
             mainCamera.SetActive(true);
             aimCamera.SetActive(false);
+            sword.SetActive(true);
 
             this.anim.SetBool("Aim", false);
             controller.enabled = true;
