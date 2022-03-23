@@ -13,6 +13,8 @@ public class AyanMainController : MonoBehaviour
     public float jumpHeight;
     public float dashSpeed;
 
+    public int damage = 50;
+
     private Vector3 moveDirection;
     private Vector3 direction;
 
@@ -30,6 +32,9 @@ public class AyanMainController : MonoBehaviour
     private float targetAngle;
     private float angle;
 
+    public int maxHealth = 100;
+    public int currentHealth;
+
     public float turnSmoothTime = 0.1f;
     private float turnSmoothVelocity;
 
@@ -46,9 +51,13 @@ public class AyanMainController : MonoBehaviour
 
     private bool isAttacking;
 
+    public HealthBar healthBar;
+
     // Start is called before the first frame update
     void Start()
     {
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
         controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
 
@@ -278,5 +287,21 @@ public class AyanMainController : MonoBehaviour
             this.anim.SetBool("Aim", false);
             controller.enabled = true;
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    public void DamageEnemy()
+    {
+        Debug.Log("Damaged Enemy");
     }
 }

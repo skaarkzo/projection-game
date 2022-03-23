@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        playerObject.GetComponent<Ayan1ControllerTest>().TakeDamage(1);
+        playerObject.GetComponent<AyanMainController>().TakeDamage(1);
         Destroy(gameObject);
     }
 }

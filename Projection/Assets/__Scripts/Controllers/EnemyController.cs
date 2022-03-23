@@ -78,13 +78,13 @@ public class EnemyController : MonoBehaviour
     {
         if (triggering)
         {
-            playerObject.GetComponent<Ayan1ControllerTest>().TakeDamage(damage);
+            playerObject.GetComponent<AyanMainController>().TakeDamage(damage);
         }
     }
-    public void EnemyTakeDamage()
+    public void EnemyTakeDamage(int eDamage)
     {
 
-        currentHealth -= 10;
+        currentHealth -= eDamage;
 
         if (currentHealth <= 0)
         {
