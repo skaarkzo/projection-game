@@ -11,6 +11,7 @@ public class AyanMainController : MonoBehaviour
     public float runSpeed;
     public float crouchSpeed;
     public float jumpHeight;
+    public float dashSpeed;
 
     private Vector3 moveDirection;
     private Vector3 direction;
@@ -176,6 +177,7 @@ public class AyanMainController : MonoBehaviour
         this.anim.SetBool("Crouch", false);
         this.anim.SetFloat("Vertical", moveZ / 2, 0.1f, Time.deltaTime);
         this.anim.SetFloat("Horizontal", moveX / 2, 0.1f, Time.deltaTime);
+
     }
 
     private void Run()
