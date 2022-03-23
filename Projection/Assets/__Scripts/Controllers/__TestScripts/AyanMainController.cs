@@ -19,6 +19,9 @@ public class AyanMainController : MonoBehaviour
     private Animator anim;
     public Transform cam;
 
+    public GameObject mainCamera;
+    public GameObject aimCamera;
+
     private float moveZ;
     private float moveX;
 
@@ -38,6 +41,8 @@ public class AyanMainController : MonoBehaviour
     public bool isGrounded;
     public bool look = true;
     public bool isIdle;
+
+    private bool isAttacking;
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +75,11 @@ public class AyanMainController : MonoBehaviour
             look = true;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+        }
+
+        if (isGrounded)
+        {
+            Aim();
         }
     }
 
@@ -108,7 +118,7 @@ public class AyanMainController : MonoBehaviour
             {
                 Run();
             }
-            
+
             else if (moveDirection.magnitude >= 0.1f && !Input.GetKey(KeyCode.LeftShift) && Input.GetKey("z"))
             {
                 Crouch();
@@ -117,6 +127,11 @@ public class AyanMainController : MonoBehaviour
             if (moveDirection.magnitude >= 0 && Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                Attack();
             }
         }
 
@@ -165,6 +180,7 @@ public class AyanMainController : MonoBehaviour
     private void Run()
     {
         isIdle = false;
+
         moveSpeed = runSpeed;
 
         CameraMovement();
@@ -178,6 +194,7 @@ public class AyanMainController : MonoBehaviour
     private void Crouch()
     {
         isIdle = false;
+
         moveSpeed = crouchSpeed;
 
         CameraMovement();
@@ -190,6 +207,7 @@ public class AyanMainController : MonoBehaviour
     private void CrouchIdle()
     {
         isIdle = true;
+
         this.anim.SetBool("Crouch", true);
         this.anim.SetBool("CrouchWalk", false);
 
@@ -214,5 +232,45 @@ public class AyanMainController : MonoBehaviour
 
         velocity.y = Mathf.Sqrt(jumpHeight * -6 * gravity);
 
+    }
+
+    private async void Attack()
+    {
+        await Task.Delay(300);
+
+        isIdle = false;
+        isAttacking = true;
+
+        this.anim.SetInteger("AttackIndex", Random.Range(0, 2));
+        this.anim.SetTrigger("Attack");
+
+        controller.enabled = false;
+
+        await Task.Delay(2000);
+
+        controller.enabled = true;
+        isAttacking = false;
+
+    }
+
+    private void Aim()
+    {
+        if (Input.GetKey(KeyCode.Mouse1) && isAttacking == false)
+        {
+            mainCamera.SetActive(false);
+            aimCamera.SetActive(true);
+
+            this.anim.SetBool("Aim", true);
+            controller.enabled = false;
+        }
+
+        else if (!Input.GetKey(KeyCode.Mouse1) && isAttacking == false)
+        {
+            mainCamera.SetActive(true);
+            aimCamera.SetActive(false);
+
+            this.anim.SetBool("Aim", false);
+            controller.enabled = true;
+        }
     }
 }
