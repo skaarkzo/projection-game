@@ -260,4 +260,11 @@ public class Ayan1ControllerTest : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    public void DamageEnemy()
+    {
+        Debug.Log("Damaged Enemy");
+    }
+
+
 }

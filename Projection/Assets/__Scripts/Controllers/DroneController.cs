@@ -21,6 +21,9 @@ public class DroneController : MonoBehaviour
 
     private GameObject playerObject;
 
+    public int maxHealth = 100;
+    public int currentHealth;
+    public int pointsValue = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -65,12 +68,22 @@ public class DroneController : MonoBehaviour
         }
     }
 
-
     void FaceTarget()
     {
         Vector3 direction = (target.position - transform.position).normalized; // Get direction to the player
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z)); // Get a rotation to the player
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+    }
+
+    public void EnemyTakeDamage()
+    {
+
+        currentHealth -= 10;
+
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void OnDrawGizmosSelected()

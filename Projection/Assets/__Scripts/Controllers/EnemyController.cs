@@ -19,6 +19,10 @@ public class EnemyController : MonoBehaviour
 
     private GameObject playerObject;
 
+    public int maxHealth = 100;
+    public int currentHealth;
+    public int pointsValue = 10;
+
 
     // Start is called before the first frame update
     void Start()
@@ -77,7 +81,16 @@ public class EnemyController : MonoBehaviour
             playerObject.GetComponent<Ayan1ControllerTest>().TakeDamage(damage);
         }
     }
+    public void EnemyTakeDamage()
+    {
 
+        currentHealth -= 10;
+
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         triggering = true;

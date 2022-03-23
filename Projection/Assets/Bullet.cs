@@ -7,8 +7,6 @@ public class Bullet : MonoBehaviour
     private GameObject playerObject;
     public float speed = 20f;
 
-    public int damage = 1;
-
     private void Start()
     {
         playerObject = GameObject.Find("Player");
@@ -37,7 +35,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        playerObject.GetComponent<Ayan1ControllerTest>().TakeDamage(damage);
+        playerObject.GetComponent<Ayan1ControllerTest>().TakeDamage(1);
         Destroy(gameObject);
     }
 }
