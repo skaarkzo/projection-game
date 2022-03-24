@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1517374187593392418}
   m_Layer: 0
   m_Name: SM_Bld_Portal_01_Ring_01
-  m_TagString: Collectable_Part1
+  m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

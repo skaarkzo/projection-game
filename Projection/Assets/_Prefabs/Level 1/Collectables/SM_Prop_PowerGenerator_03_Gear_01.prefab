@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6617267811334670318}
   m_Layer: 18
   m_Name: SM_Prop_PowerGenerator_03_Gear_01
-  m_TagString: Collectable_Part2
+  m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

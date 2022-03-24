@@ -1,45 +1,25 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MissionManager : MonoBehaviour
 {
 
-    public MissionObject[] missions;
-    public bool[] missionCompleted;
+    public MissionObject[] missions; // Stores missions 
+    public bool[] missionCompleted; // Variable to store if mission is completed or not
 
+    // Referencing other scripts 
     public DialogueManager dialogueManager;
-
     public MissionObject missionObject;
 
-    public string itemCollected;
-
-    
-
+    public string itemCollected; // String varianble to store item to be callected name
 
     // Start is called before the first frame update
     void Start()
     {
+        // Linking other scripts
         missionObject = FindObjectOfType<MissionObject>();
 
-        missionCompleted = new bool[missions.Length];
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void ShowMissionText(string missionText)
-    {
-
-        dialogueManager.dialogueLines = new string[1];
-        dialogueManager.dialogueLines[0] = missionText;
-
-        dialogueManager.currentLine = 0;
-        dialogueManager.ShowDialogue();
+        missionCompleted = new bool[missions.Length]; // Sets mission completed array to same length as mission length
 
     }
+
 }

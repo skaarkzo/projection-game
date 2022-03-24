@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RandomPositionGenerator : MonoBehaviour
@@ -11,6 +9,7 @@ public class RandomPositionGenerator : MonoBehaviour
     public GameObject part3;
     public GameObject part4;
 
+    // Creating variables to hold random numbers that will be generated
     private int randomNum1;
     private int randomNum2;
     private int randomNum3;
@@ -18,16 +17,15 @@ public class RandomPositionGenerator : MonoBehaviour
     // Instantiate the Prefab when the game starts
     void Start()
     {
+        // System chooses a random number in range of each function
         randomNum1 = Random.Range(1, 12);
         randomNum2 = Random.Range(1, 9);
         randomNum3 = Random.Range(1,10);
 
-        Debug.Log(randomNum1);
-        Debug.Log(randomNum2);
-        Debug.Log(randomNum3);
 
         // Instantiate at position set depending on random 
         
+        // Part 1 location spawner
         if (part1)
         {
             if (randomNum1 == 1 || randomNum1 == 7)
@@ -57,6 +55,7 @@ public class RandomPositionGenerator : MonoBehaviour
 
         }
 
+        // Part 2 location spawner
         if (part2)
         {
             if (randomNum2 == 1 || randomNum2 == 4 || randomNum2 == 7)
@@ -74,6 +73,7 @@ public class RandomPositionGenerator : MonoBehaviour
 
         }
 
+        // Part 3 location spawner
         if (part3)
         {
             if (randomNum3 % 2 == 0)
@@ -86,6 +86,7 @@ public class RandomPositionGenerator : MonoBehaviour
             }
         }
 
+        // Part 4 location spawner
         if (part4)
         {
             Instantiate(part4, new Vector3(0f, 9f, -111.75f), Quaternion.identity);
@@ -94,17 +95,10 @@ public class RandomPositionGenerator : MonoBehaviour
 
     }
 
+    // Disable collectible when collected
     public void OnTriggerEnter(Collider other)
     {
-        if (tag == "Collectable_Part1")
-        {
-        other.gameObject.SetActive(false);
-        }
-        else if (tag == "Collectable_Part2")
-        {
-            other.gameObject.SetActive(false);
-        }
-        else if (tag == "Collectable_Part3")
+        if (tag == "Collectable")
         {
             other.gameObject.SetActive(false);
         }

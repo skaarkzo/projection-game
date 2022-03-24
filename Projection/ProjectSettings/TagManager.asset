@@ -12,9 +12,7 @@ TagManager:
   - 3Door1-R
   - 3Door1-L
   - 3Door1-T
-  - Collectable_Part1
-  - Collectable_Part2
-  - Collectable_Part3
+  - Collectable
   layers:
   - Default
   - TransparentFX

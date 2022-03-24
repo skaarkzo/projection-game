@@ -1,32 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MissionObject : MonoBehaviour
 {
 
-    public int missionNumber;
-    public MissionManager missionManager;
+    public int missionNumber;   // Variable to store mission number 
 
+    // Referencing other scripts 
+    public MissionManager missionManager;
     public DialogueManager dialogueManager;
     public DialogueHolder dialogueHolder;
 
+    // Arrays to store start and end text
     public string[] startText;
     public string[] endText;
 
-    public bool isItemQuest;
-    public string targetItem;
+    public bool isItemMission; // Variable to check if mission is to collect an item
 
-    public int lineCount;
+    public string targetItem; // Name of item that is to be collected
+
+    public int lineCount; // Line number of dialogue
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        dialogueManager = FindObjectOfType<DialogueManager>();
-        dialogueHolder = FindObjectOfType<DialogueHolder>();
 
-        lineCount = startText.Length;
+        // Linking other scripts
+        dialogueManager = FindObjectOfType<DialogueManager>();
 
     }
 
@@ -34,48 +35,48 @@ public class MissionObject : MonoBehaviour
     void Update()
     {
 
-        if (dialogueManager.dialogueActive && Input.GetKeyUp(KeyCode.X))
-        {
-            //dialogueManager.currentLine++;
-        }
-
         // Ending the dialogue box and disabling it
         if (dialogueManager.currentLine >= dialogueManager.dialogueLines.Length)
         {
-            dialogueManager.dialogueBox.SetActive(false);
-            dialogueManager.dialogueActive = false;
-            dialogueManager.currentLine = 0;
+
+            dialogueManager.dialogueBox.SetActive(false); // Disabling dialogue box
+            dialogueManager.dialogueActive = false; // Disabling dialogue 
+            dialogueManager.currentLine = 0; // Reseting current line
         }
 
-        if (isItemQuest)
+        // Function for item mission
+        if (isItemMission)
         {
+
             if(missionManager.itemCollected == targetItem)
             {
-                missionManager.itemCollected = null;
-                EndMission();
+                missionManager.itemCollected = null; 
+                EndMission(); // Ends mission
             }
         }
 
     }
 
+    // Start mission method
     public void StartMission()
     {
 
-        dialogueManager.dialogueLines = startText;
-        dialogueManager.currentLine = 0;
-        dialogueManager.ShowDialogue();
+        dialogueManager.dialogueLines = startText; // Sets dialogue lines to start text set in unity
+        dialogueManager.currentLine = 0; // Reseting current line
+        dialogueManager.ShowDialogue(); // Shows dialogue
 
     }
 
+    // End mission method
     public void EndMission()
     {
 
-        dialogueManager.dialogueLines = endText;
-        dialogueManager.currentLine = 0;
-        dialogueManager.ShowDialogue();
+        dialogueManager.dialogueLines = endText; // Sets dialogue lines to end text set in unity
+        dialogueManager.currentLine = 0; // Reseting current line
+        dialogueManager.ShowDialogue(); // Shows dialogue
 
-        gameObject.SetActive(false);
-        missionManager.missionCompleted[missionNumber] = true;
+        gameObject.SetActive(false); // Disables missions so it does not repeat
+        missionManager.missionCompleted[missionNumber] = true; // Sets misson as completed 
 
     }
 

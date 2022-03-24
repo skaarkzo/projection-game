@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8984250117619164922}
   m_Layer: 0
   m_Name: SM_Item_Ring_05
-  m_TagString: Untagged
+  m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
