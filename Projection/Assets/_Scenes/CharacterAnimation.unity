@@ -296,7 +296,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 164492680}
-  m_LocalRotation: {x: 0.075327836, y: 0.00000003063576, z: -0.0000000023136097, w: 0.9971588}
+  m_LocalRotation: {x: 0.075327836, y: -0.000000012977678, z: 9.790662e-10, w: 0.9971588}
   m_LocalPosition: {x: 0, y: 2.5, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -500,7 +500,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 407909882}
-  m_LocalRotation: {x: 0.06646114, y: 0.46936557, z: -0.035457034, w: 0.8797851}
+  m_LocalRotation: {x: 0.06646114, y: 0.46936554, z: -0.03545703, w: 0.8797851}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -846,7 +846,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -840037777384891287, guid: cd4700d1feda69442985414236b3a0c2, type: 3}
+  - {fileID: 2100000, guid: 303c898d3802a64409bf3765504961f7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1711,6 +1711,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookRadius: 10
   damage: 10
+  maxHealth: 100
+  currentHealth: 0
+  pointsValue: 10
 --- !u!1 &1906019427
 GameObject:
   m_ObjectHideFlags: 3

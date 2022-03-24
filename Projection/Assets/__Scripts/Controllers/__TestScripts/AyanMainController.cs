@@ -3,101 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Threading.Tasks;
 
-public class AyanMainController : MonoBehaviour
+public class AyanMainController : MainController
 {
-
-    public float moveSpeed;
     public float walkSpeed;
     public float runSpeed;
     public float crouchSpeed;
     public float jumpHeight;
-    public float dashSpeed;
 
-    private Vector3 moveDirection;
-    private Vector3 direction;
-
-    public CharacterController controller;
-    private Animator anim;
-    public Transform cam;
-
-    public GameObject mainCamera;
-    public GameObject aimCamera;
     public GameObject sword;
-
-    private float moveZ;
-    private float moveX;
-
-    private float targetAngle;
-    private float angle;
-
-    public float turnSmoothTime = 0.1f;
-    private float turnSmoothVelocity;
-
-    public Transform groundCheck;
-    public float groundCheckDistance;
-    public LayerMask groundMask;
+    public Transform player;
     
-    public float gravity = -9.81f;
-    private Vector3 velocity;
-
-    public bool isGrounded;
-    public bool look = true;
-    public bool isIdle;
+    private Vector3 velocity; 
 
     private bool isAttacking;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        controller = GetComponent<CharacterController>();
-        anim = GetComponentInChildren<Animator>();
+    private bool isRolling = false;
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
-
-    // Update is called once per frame
     void Update()
     {
+        CursorLock();
+        GroundedCheck();
+        CameraMovement();
+
         if (look)
         {
             Move();
-        }
-
-        if (look && Input.GetKeyDown(KeyCode.Escape))
-        {
-            look = false;
-            anim.Rebind();
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-
-        else if (Input.GetMouseButtonDown(0) && !look)
-        {
-            look = true;
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-
-        if (isGrounded)
-        {
             Aim();
         }
     }
 
     public void Move()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckDistance, groundMask);
-
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
 
-        moveZ = Input.GetAxis("Vertical");
-        moveX = Input.GetAxis("Horizontal");
-
-        moveDirection = new Vector3(moveX, 0, moveZ).normalized;
+        InputManager();
 
         if (isGrounded)
         {
@@ -131,6 +73,11 @@ public class AyanMainController : MonoBehaviour
                 Jump();
             }
 
+            if (Input.GetKeyDown("q"))
+            {
+                Roll();
+            }
+
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 Attack();
@@ -141,20 +88,12 @@ public class AyanMainController : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
-
-    }
-
-    private void CameraMovement()
-    {
-        targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-        angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-        transform.rotation = Quaternion.Euler(0, angle, 0);
-
-        direction = Quaternion.Euler(0, targetAngle, 0) * Vector3.forward;
     }
 
     private void Idle()
     {
+        moveSpeed = 0;
+
         isIdle = true;
 
         this.anim.SetBool("CrouchWalk", false);
@@ -162,7 +101,6 @@ public class AyanMainController : MonoBehaviour
 
         this.anim.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
         this.anim.SetFloat("Horizontal", 0, 0.1f, Time.deltaTime);
-        direction = Vector3.zero;
     }
 
     private void Walk()
@@ -178,6 +116,10 @@ public class AyanMainController : MonoBehaviour
         this.anim.SetFloat("Vertical", moveZ / 2, 0.1f, Time.deltaTime);
         this.anim.SetFloat("Horizontal", moveX / 2, 0.1f, Time.deltaTime);
 
+        if (isRolling == true)
+        {
+            moveSpeed = 2;
+        }
     }
 
     private void Run()
@@ -192,6 +134,11 @@ public class AyanMainController : MonoBehaviour
         this.anim.SetBool("Crouch", false);
         this.anim.SetFloat("Vertical", moveZ, 0.1f, Time.deltaTime);
         this.anim.SetFloat("Horizontal", moveX, 0.1f, Time.deltaTime);
+
+        if (isRolling == true)
+        {
+            moveSpeed = 2;
+        }
     }
 
     private void Crouch()
@@ -278,5 +225,21 @@ public class AyanMainController : MonoBehaviour
             this.anim.SetBool("Aim", false);
             controller.enabled = true;
         }
+    }
+
+    private void Roll()
+    {
+        if (isRolling == false)
+        {
+            this.anim.SetTrigger("Roll");
+            isRolling = true;
+        }
+        
+    }
+
+    public void RollingComplete()
+    {
+        controller.Move(direction.normalized * Time.deltaTime);
+        isRolling = false;
     }
 }
