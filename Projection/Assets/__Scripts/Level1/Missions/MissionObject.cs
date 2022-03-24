@@ -11,6 +11,9 @@ public class MissionObject : MonoBehaviour
     public string startText;
     public string endText;
 
+    public bool isItemQuest;
+    public string targetItem;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +23,14 @@ public class MissionObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (isItemQuest)
+        {
+            if(missionManager.itemCollected == targetItem)
+            {
+                missionManager.itemCollected = null;
+                EndMission();
+            }
+        }
     }
 
     public void StartMission()
