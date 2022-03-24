@@ -8,21 +8,45 @@ public class MissionObject : MonoBehaviour
     public int missionNumber;
     public MissionManager missionManager;
 
-    public string startText;
-    public string endText;
+    public DialogueManager dialogueManager;
+    public DialogueHolder dialogueHolder;
+
+    public string[] startText;
+    public string[] endText;
 
     public bool isItemQuest;
     public string targetItem;
 
+    public int lineCount;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        dialogueManager = FindObjectOfType<DialogueManager>();
+        dialogueHolder = FindObjectOfType<DialogueHolder>();
+
+        lineCount = startText.Length;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (dialogueManager.dialogueActive && Input.GetKeyUp(KeyCode.X))
+        {
+            //dialogueManager.currentLine++;
+        }
+
+        // Ending the dialogue box and disabling it
+        if (dialogueManager.currentLine >= dialogueManager.dialogueLines.Length)
+        {
+            dialogueManager.dialogueBox.SetActive(false);
+            dialogueManager.dialogueActive = false;
+            dialogueManager.currentLine = 0;
+        }
+
         if (isItemQuest)
         {
             if(missionManager.itemCollected == targetItem)
@@ -31,18 +55,28 @@ public class MissionObject : MonoBehaviour
                 EndMission();
             }
         }
+
     }
 
     public void StartMission()
     {
-        missionManager.ShowMissionText(startText);
+
+        dialogueManager.dialogueLines = startText;
+        dialogueManager.currentLine = 0;
+        dialogueManager.ShowDialogue();
+
     }
 
     public void EndMission()
     {
-        missionManager.ShowMissionText(endText);
-        missionManager.missionCompleted[missionNumber] = true;
+
+        dialogueManager.dialogueLines = endText;
+        dialogueManager.currentLine = 0;
+        dialogueManager.ShowDialogue();
+
         gameObject.SetActive(false);
+        missionManager.missionCompleted[missionNumber] = true;
+
     }
 
 

@@ -11,12 +11,18 @@ public class MissionManager : MonoBehaviour
 
     public DialogueManager dialogueManager;
 
+    public MissionObject missionObject;
+
     public string itemCollected;
+
+    
 
 
     // Start is called before the first frame update
     void Start()
     {
+        missionObject = FindObjectOfType<MissionObject>();
+
         missionCompleted = new bool[missions.Length];
     }
 

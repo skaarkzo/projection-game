@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class dialogueHolder : MonoBehaviour
+public class DialogueHolder : MonoBehaviour
 {
 
     public string dialogue;
     private DialogueManager dialogueManager;
+
+    private MissionObject missionObject;
 
     public string[] dialogueLines;
 
@@ -14,6 +16,8 @@ public class dialogueHolder : MonoBehaviour
     void Start()
     {
         dialogueManager = FindObjectOfType<DialogueManager>();
+        missionObject = FindObjectOfType<MissionObject>();
+
     }
 
     // Update is called once per frame

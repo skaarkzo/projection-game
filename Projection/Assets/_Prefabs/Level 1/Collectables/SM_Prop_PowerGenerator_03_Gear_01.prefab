@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7661932257178785424}
   - component: {fileID: 5338196567061101908}
   - component: {fileID: -1588144998662346334}
+  - component: {fileID: -8676576550724655558}
+  - component: {fileID: 6617267811334670318}
   m_Layer: 18
   m_Name: SM_Prop_PowerGenerator_03_Gear_01
   m_TagString: Collectable_Part2
@@ -96,3 +98,32 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: e239a49a5ba1e0143a2f77754e4d1071, type: 3}
+--- !u!114 &-8676576550724655558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285253139840550575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c2ef7b48e5c9b346b44c69050075112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionNumber: 5
+  itemName: SM_Prop_PowerGenerator_03_Gear_01
+--- !u!114 &6617267811334670318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285253139840550575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a2a3d1f8c3f61e499e4011993004f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionNumber: 6
+  startMission: 1
+  endMission: 0

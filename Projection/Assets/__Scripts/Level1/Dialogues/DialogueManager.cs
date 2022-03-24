@@ -17,18 +17,20 @@ public class DialogueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Disables dialogue box 
         dialogueBox.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (dialogueActive && Input.GetKeyDown(KeyCode.X))
+        // Goes through the different lines of text
+        if (dialogueActive && Input.GetKeyUp(KeyCode.X))
         {
             currentLine++;
         }
 
-
+        // Ending the dialogue box and disabling it
         if (currentLine >= dialogueLines.Length)
         {
             dialogueBox.SetActive(false);
@@ -36,27 +38,25 @@ public class DialogueManager : MonoBehaviour
             currentLine = 0;
         }
 
+        // Setting text to current line text
         dialogueText.text = dialogueLines[currentLine];
 
     }
 
-    public void ShowBox(string dialogue)
-    {
-        dialogueActive = true;
-        dialogueBox.SetActive(true);
-        dialogueText.text = dialogue;
-    }
-
+    // Show dialogue
     public void ShowDialogue()
     {
         dialogueActive = true;
         dialogueBox.SetActive(true);
     }
 
+    // Pause game 
     void PauseGame()
     {
         Time.timeScale = 0;
     }
+
+    // Resume game 
     void ResumeGame()
     {
         Time.timeScale = 1;

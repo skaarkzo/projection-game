@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8284146447014831524}
   - component: {fileID: 3464846108931827542}
   - component: {fileID: -3292002508398834396}
+  - component: {fileID: -7596135447715543029}
+  - component: {fileID: 1517374187593392418}
   m_Layer: 0
   m_Name: SM_Bld_Portal_01_Ring_01
   m_TagString: Collectable_Part1
@@ -96,3 +98,32 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 7e65c8fc1ee0172409a2f0b2b7af095b, type: 3}
+--- !u!114 &-7596135447715543029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5127750232950769273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c2ef7b48e5c9b346b44c69050075112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionNumber: 7
+  itemName: SM_Bld_Portal_01_Ring_01
+--- !u!114 &1517374187593392418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5127750232950769273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a2a3d1f8c3f61e499e4011993004f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionNumber: 8
+  startMission: 1
+  endMission: 0
