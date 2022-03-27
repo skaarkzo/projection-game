@@ -11,9 +11,6 @@ public class AyanMainController : MainController
     public float jumpHeight;
 
     public GameObject sword;
-    public Transform player;
-    
-    private Vector3 velocity; 
 
     private bool isAttacking;
 
@@ -23,7 +20,6 @@ public class AyanMainController : MainController
     {
         CursorLock();
         GroundedCheck();
-        CameraMovement();
 
         if (look)
         {

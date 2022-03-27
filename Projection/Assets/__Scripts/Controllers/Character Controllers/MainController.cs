@@ -4,23 +4,25 @@ using UnityEngine;
 
 public class MainController : MonoBehaviour
 {
-    public float moveSpeed;
+    [HideInInspector] public float moveSpeed;
 
-    public Vector3 moveDirection;
-    public Vector3 direction;
+    [HideInInspector] public Vector3 moveDirection;
+    [HideInInspector] public Vector3 direction;
 
     public CharacterController controller;
-    public Animator anim;
     public Transform cam;
+    [HideInInspector] public Animator anim;  
 
     public GameObject mainCamera;
     public GameObject aimCamera;
 
-    public float moveZ;
-    public float moveX;
+    [HideInInspector] public float moveZ;
+    [HideInInspector] public float moveX;
+
+    [HideInInspector] public Vector3 pos;
 
     private float targetAngle;
-    public float angle;
+    private float angle;
 
     public float turnSmoothTime = 0.1f;
     private float turnSmoothVelocity;
@@ -28,10 +30,12 @@ public class MainController : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckDistance;
     public LayerMask groundMask;
+    public bool isGrounded;
+
+    [HideInInspector] public Vector3 velocity;
 
     public float gravity = -9.81f;
 
-    public bool isGrounded;
     public bool look = true;
     public bool isIdle;
 
@@ -45,6 +49,8 @@ public class MainController : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        pos = transform.position;
     }
 
     public void InputManager()
