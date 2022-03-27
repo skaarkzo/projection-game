@@ -10,6 +10,9 @@ public class MissionTrigger : MonoBehaviour
     public bool startMission; // Variable to start if the mission is a start mission 
     public bool endMission; // Variable to end if the mission is a start mission 
 
+    public bool enablePause;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +33,12 @@ public class MissionTrigger : MonoBehaviour
                 // Checks to see if it is a start mission and if the mission has not been started
                 if (startMission && !missionManager.missions[missionNumber].gameObject.activeSelf)
                 {
+
+                    if (enablePause == true)
+                    {
+                        PauseGame();
+                    }
+
                     missionManager.missions[missionNumber].gameObject.SetActive(true); // Activates game object
                     missionManager.missions[missionNumber].StartMission(); // Starts mission
                 }
@@ -42,6 +51,11 @@ public class MissionTrigger : MonoBehaviour
 
             }
         }
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
     }
 
 }

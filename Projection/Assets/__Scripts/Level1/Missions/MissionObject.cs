@@ -21,7 +21,6 @@ public class MissionObject : MonoBehaviour
     public int lineCount; // Line number of dialogue
 
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -80,5 +79,6 @@ public class MissionObject : MonoBehaviour
 
     }
 
+    
 
 }

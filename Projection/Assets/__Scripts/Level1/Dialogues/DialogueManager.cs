@@ -28,9 +28,12 @@ public class DialogueManager : MonoBehaviour
             currentLine++;
         }
 
+
         // Ending the dialogue box and disabling it
         if (currentLine >= dialogueLines.Length)
         {
+            Time.timeScale = 1;
+
             dialogueBox.SetActive(false);
             dialogueActive = false;
             currentLine = 0;
