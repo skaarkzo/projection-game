@@ -14,6 +14,7 @@ public class MissionTrigger : MonoBehaviour
 
     public bool enablePause;
 
+    //public Transform target; // Target 
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +38,7 @@ public class MissionTrigger : MonoBehaviour
                 if (startMission && !missionManager.missions[missionNumber].gameObject.activeSelf)
                 {
 
-
+                    //missionWaypoint.target = target;
 
                     if (enablePause == true)
                     {
