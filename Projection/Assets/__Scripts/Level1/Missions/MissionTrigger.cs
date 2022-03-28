@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class MissionTrigger : MonoBehaviour
 {
-    
-    private MissionManager missionManager; // Referencing other scripts 
+
+    // Referencing other scripts 
+    private MissionManager missionManager; 
+    private MissionWaypoint missionWaypoint; 
 
     public int missionNumber; // Variable to store mission number
 
@@ -18,6 +20,7 @@ public class MissionTrigger : MonoBehaviour
     {
         // Linking other scripts
         missionManager = FindObjectOfType<MissionManager>();
+        missionWaypoint = FindObjectOfType<MissionWaypoint>();
     }
 
     // On trigger function
@@ -33,6 +36,8 @@ public class MissionTrigger : MonoBehaviour
                 // Checks to see if it is a start mission and if the mission has not been started
                 if (startMission && !missionManager.missions[missionNumber].gameObject.activeSelf)
                 {
+
+
 
                     if (enablePause == true)
                     {
