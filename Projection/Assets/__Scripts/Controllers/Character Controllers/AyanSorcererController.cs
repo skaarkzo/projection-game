@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
 
 public class AyanSorcererController : MainController
 {
@@ -13,6 +14,9 @@ public class AyanSorcererController : MainController
     public float flySpeed;
 
     public static bool isWalking;
+    public static bool isFlying;
+    public static bool isAttacking;
+    public bool allowHover;
 
     // Update is called once per frame
     void Update()
@@ -22,6 +26,7 @@ public class AyanSorcererController : MainController
         GroundedCheck();
 
         Move();
+        Hover();
     }
 
     private void Move()
@@ -35,11 +40,6 @@ public class AyanSorcererController : MainController
 
         if (isGrounded)
         {
-            //if (moveDirection == Vector3.zero && groundIdle == false && Input.GetKeyDown(KeyCode.Space))
-            //{
-            //    Idle();
-            //}
-
             if (moveDirection == Vector3.zero)
             {
                 FloatIdle();
@@ -54,22 +54,37 @@ public class AyanSorcererController : MainController
             {
                 Fly();
             }
+
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                Attack();
+            }
+
+            if (Input.GetKeyDown("q"))
+            {
+                Heal();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                Attack2();
+            }
         }
 
         controller.Move(direction.normalized * moveSpeed * Time.deltaTime);
     }
 
-    //private void Idle()
-    //{
-    //    moveSpeed = 0;
+    private void Hover()
+    {
+        if (allowHover == true)
+        {
+            // Calculate new y-position of the player.
+            float newY = Mathf.Sin(Time.time * hoverSpeed) * hoverHeight + pos.y;
 
-    //    isIdle = true;
-    //    groundIdle = true;
-
-    //    this.anim.SetBool("Move", false);
-    //    this.anim.SetBool("FloatIdle", false);
-
-    //}
+            // Set the player's new y-position.
+            transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+        } 
+    }
 
     private void FloatIdle()
     {
@@ -77,23 +92,31 @@ public class AyanSorcererController : MainController
 
         isIdle = true;
         isWalking = false;
+        isFlying = false;
 
-        // Calculate new y-position of the collectible.
-        float newY = Mathf.Sin(Time.time * hoverSpeed) * hoverHeight + pos.y;
+        if (isAttacking == true)
+        {
+            allowHover = false;
+        }
 
-        // Set the collectible's new y-position.
-        transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+        else
+        {
+            allowHover = true;
+        }
 
         this.anim.SetLayerWeight(1, 1);
         this.anim.SetBool("Walk", false);
         this.anim.SetBool("IdleToFloatMove", false);
         this.anim.SetBool("WalkToFloatMove", false);
+
     }
 
     private void Walk()
     {
         isIdle = false;
         isWalking = true;
+        isFlying = false;
+        allowHover = false;
 
         moveSpeed = walkSpeed;
 
@@ -107,6 +130,8 @@ public class AyanSorcererController : MainController
     private void Fly()
     {
         isIdle = false;
+        isFlying = true;
+        allowHover = true;
 
         moveSpeed = flySpeed;
 
@@ -125,7 +150,65 @@ public class AyanSorcererController : MainController
             this.anim.SetBool("WalkToFloatMove", true);
             this.anim.SetBool("Walk", false);
         }
-        
-        
+    }
+
+    private async void Attack()
+    {
+        isIdle = false;
+        isAttacking = true;
+        isFlying = false;
+        allowHover = false;
+
+        if (isWalking == false)
+        {
+            this.anim.SetTrigger("Attack1");
+            this.anim.SetInteger("SkillNumber", 0);
+            controller.enabled = false;
+        }     
+
+        await Task.Delay(2000);
+
+        isAttacking = false;
+        controller.enabled = true;
+
+    }
+
+    private async void Heal()
+    {
+        isIdle = false;
+        isAttacking = false;
+        isFlying = false;
+        allowHover = false;
+
+        if (isWalking == false)
+        {
+            this.anim.SetTrigger("Heal");
+            this.anim.SetInteger("SkillNumber", 1);
+            controller.enabled = false;
+        }
+
+        await Task.Delay(2000);
+
+        controller.enabled = true;
+    }
+
+    private async void Attack2()
+    {
+        isIdle = false;
+        isAttacking = true;
+        isFlying = false;
+        allowHover = false;
+
+        if (isWalking == false)
+        {
+            this.anim.SetTrigger("Attack2");
+            this.anim.SetInteger("SkillNumber", 2);
+            controller.enabled = false;
+        }
+
+        await Task.Delay(2000);
+
+        isAttacking = false;
+        controller.enabled = true;
     }
 }
