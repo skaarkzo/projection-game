@@ -39,11 +39,15 @@ public class MainController : MonoBehaviour
     public bool look = true;
     public bool isIdle;
 
+    [HideInInspector] public bool readyToThrow;
+
     public static bool lookDirectionLock = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        readyToThrow = true;
+
         controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
 
@@ -93,7 +97,24 @@ public class MainController : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, angle, 0);
             direction = Quaternion.Euler(0, targetAngle, 0) * Vector3.forward;
-        }
-        
+        }  
+    }
+
+    public virtual void Idle()
+    {
+        this.anim.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
+        this.anim.SetFloat("Horizontal", 0, 0.1f, Time.deltaTime);
+    }
+
+    public virtual void Walk()
+    {
+        this.anim.SetFloat("Vertical", moveZ / 2, 0.1f, Time.deltaTime);
+        this.anim.SetFloat("Horizontal", moveX / 2, 0.1f, Time.deltaTime);
+    }
+
+    public virtual void Run()
+    {
+        this.anim.SetFloat("Vertical", moveZ, 0.1f, Time.deltaTime);
+        this.anim.SetFloat("Horizontal", moveX, 0.1f, Time.deltaTime);
     }
 }
