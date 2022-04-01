@@ -12,7 +12,9 @@ public class MissionTrigger : MonoBehaviour
     public bool startMission; // Variable to start if the mission is a start mission 
     public bool endMission; // Variable to end if the mission is a start mission 
 
-    public bool enablePause;
+    public bool enablePause; // Variable 
+
+    public Transform target; // Target 
 
     //public Transform target; // Target 
 
@@ -38,7 +40,16 @@ public class MissionTrigger : MonoBehaviour
                 if (startMission && !missionManager.missions[missionNumber].gameObject.activeSelf)
                 {
 
-                    //missionWaypoint.target = target;
+                    if (target == null)
+                    {
+
+                    }
+                    else
+                    {
+                        missionWaypoint.target = target;
+                        missionWaypoint.img.gameObject.SetActive(true);
+                    }
+
 
                     if (enablePause == true)
                     {
@@ -53,6 +64,7 @@ public class MissionTrigger : MonoBehaviour
                 if(endMission && missionManager.missions[missionNumber].gameObject.activeSelf)
                 {
                     missionManager.missions[missionNumber].EndMission(); // Ends mission
+                    missionWaypoint.img.gameObject.SetActive(false);
                 }
 
             }
