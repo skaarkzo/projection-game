@@ -66,7 +66,7 @@ public class MainController : MonoBehaviour
         if (look && Input.GetKeyDown(KeyCode.Escape))
         {
             look = false;
-            anim.Rebind();
+            //anim.Rebind();
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }

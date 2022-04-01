@@ -13,6 +13,7 @@ TagManager:
   - 3Door1-L
   - 3Door1-T
   - Collectable
+  - Collectable_Part1
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - UI
   - Plane
   - 
-  - 
+  - BloomMobileEffect
   - 
   - 
   - 
