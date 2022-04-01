@@ -114,8 +114,8 @@ MonoBehaviour:
   Speed: 1
   RotationAmount: 90
   ForwardDirection: 0
-  SlideDirection: {x: -1, y: 0, z: 0}
-  SlideAmount: 1.9
+  SlideDirection: {x: 0, y: 0, z: 1.3}
+  SlideAmount: 1
 --- !u!1 &1323966360427192
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,8 +230,8 @@ MonoBehaviour:
   Speed: 1
   RotationAmount: 90
   ForwardDirection: 0
-  SlideDirection: {x: 1, y: 0, z: 0}
-  SlideAmount: 1.9
+  SlideDirection: {x: 0, y: 0, z: -1.3}
+  SlideAmount: 1
 --- !u!1 &1374490240998458
 GameObject:
   m_ObjectHideFlags: 0
