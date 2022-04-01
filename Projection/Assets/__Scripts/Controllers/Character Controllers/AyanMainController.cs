@@ -10,12 +10,21 @@ public class AyanMainController : MainController
     public float crouchSpeed;
     public float jumpHeight;
 
+    public int maxHealth = 100;
+    public int currentHealth;
+
+    public HealthBar healthBar;
+
     public GameObject sword;
 
     private bool isAttacking;
 
     private bool isRolling = false;
 
+    private void Start()
+    {
+        currentHealth = maxHealth;
+    }
     void Update()
     {
         CursorLock();
@@ -236,5 +245,16 @@ public class AyanMainController : MainController
     {
         controller.Move(direction.normalized * Time.deltaTime);
         isRolling = false;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
