@@ -9,6 +9,7 @@ public class MissionObject : MonoBehaviour
     public MissionManager missionManager;
     public DialogueManager dialogueManager;
     public DialogueHolder dialogueHolder;
+    public MissionWaypoint missionWaypoint;
 
     // Arrays to store start and end text
     public string[] startText;
@@ -24,10 +25,9 @@ public class MissionObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         // Linking other scripts
         dialogueManager = FindObjectOfType<DialogueManager>();
-
+        missionWaypoint = FindObjectOfType<MissionWaypoint>();
     }
 
     // Update is called once per frame
@@ -75,6 +75,7 @@ public class MissionObject : MonoBehaviour
         dialogueManager.ShowDialogue(); // Shows dialogue
 
         gameObject.SetActive(false); // Disables missions so it does not repeat
+        
         missionManager.missionCompleted[missionNumber] = true; // Sets misson as completed 
 
     }

@@ -72,6 +72,7 @@ public class AyanSorcererController : MainController
         }
 
         controller.Move(direction.normalized * moveSpeed * Time.deltaTime);
+
     }
 
     private void Hover()
@@ -111,7 +112,7 @@ public class AyanSorcererController : MainController
 
     }
 
-    private void Walk()
+    private new void Walk()
     {
         isIdle = false;
         isWalking = true;

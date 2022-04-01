@@ -86,7 +86,7 @@ public class AyanMainController : MainController
         controller.Move(velocity * Time.deltaTime);
     }
 
-    private void Idle()
+    public override void Idle()
     {
         moveSpeed = 0;
 
@@ -95,11 +95,10 @@ public class AyanMainController : MainController
         this.anim.SetBool("CrouchWalk", false);
         this.anim.SetBool("Crouch", false);
 
-        this.anim.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
-        this.anim.SetFloat("Horizontal", 0, 0.1f, Time.deltaTime);
+        base.Idle();
     }
 
-    private void Walk()
+    public override void Walk()
     {
         isIdle = false;
 
@@ -109,8 +108,8 @@ public class AyanMainController : MainController
 
         this.anim.SetBool("CrouchWalk", false);
         this.anim.SetBool("Crouch", false);
-        this.anim.SetFloat("Vertical", moveZ / 2, 0.1f, Time.deltaTime);
-        this.anim.SetFloat("Horizontal", moveX / 2, 0.1f, Time.deltaTime);
+        
+        base.Walk();
 
         if (isRolling == true)
         {
@@ -118,7 +117,7 @@ public class AyanMainController : MainController
         }
     }
 
-    private void Run()
+    public override void Run()
     {
         isIdle = false;
 
@@ -128,8 +127,8 @@ public class AyanMainController : MainController
 
         this.anim.SetBool("CrouchWalk", false);
         this.anim.SetBool("Crouch", false);
-        this.anim.SetFloat("Vertical", moveZ, 0.1f, Time.deltaTime);
-        this.anim.SetFloat("Horizontal", moveX, 0.1f, Time.deltaTime);
+        
+        base.Run();
 
         if (isRolling == true)
         {
