@@ -12,6 +12,8 @@ public class DialogueManager : MonoBehaviour
     public string[] dialogueLines;
     public int currentLine;
 
+    public float timeLeft = 5;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,12 +24,18 @@ public class DialogueManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Goes through the different lines of text
-        if (dialogueActive && Input.GetKeyUp(KeyCode.X))
+
+        if (dialogueActive)
         {
-            currentLine++;
+            timeLeft -= Time.deltaTime;
         }
 
+        // Goes through the different lines of text
+        if ((dialogueActive && Input.GetKeyUp(KeyCode.X)) || (dialogueActive && timeLeft <= 0))
+        {
+            currentLine++;
+            timeLeft = 5;
+        }
 
         // Ending the dialogue box and disabling it
         if (currentLine >= dialogueLines.Length)
@@ -47,6 +55,7 @@ public class DialogueManager : MonoBehaviour
     // Show dialogue
     public void ShowDialogue()
     {
+        timeLeft = 5;
         dialogueActive = true;
         dialogueBox.SetActive(true);
     }
