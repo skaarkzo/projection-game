@@ -41,6 +41,11 @@ public class MainController : MonoBehaviour
 
     [HideInInspector] public bool readyToThrow;
 
+    public int maxHealth = 100;
+    public int currentHealth;
+
+    public HealthBar healthBar;
+
     public static bool lookDirectionLock = false;
 
     // Start is called before the first frame update
@@ -50,6 +55,9 @@ public class MainController : MonoBehaviour
 
         controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
+
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

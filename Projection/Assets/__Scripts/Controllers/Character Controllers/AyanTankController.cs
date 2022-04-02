@@ -149,6 +149,7 @@ public class AyanTankController : MainController
     {
         if (isIdle == true)
         {
+
             this.anim.SetTrigger("KnifeThrow");
 
             await Task.Delay(1000);
@@ -176,5 +177,11 @@ public class AyanTankController : MainController
     private void ResetThrow()
     {
         readyToThrow = true;
+    }
+
+    public void DuringThrow()
+    {
+        controller.Move(direction.normalized * 0.5f * Time.deltaTime);
+        readyToThrow = false;
     }
 }
