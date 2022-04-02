@@ -49,6 +49,10 @@ public class EnemyController : MonoBehaviour
                 Attack();
             }
         }
+        else
+        {
+            Idle();
+        }
     }
     
     void FaceTarget()
