@@ -24,6 +24,9 @@ public class AyanMainController : MainController
     private void Start()
     {
         currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+        controller = GetComponent<CharacterController>();
+        anim = GetComponentInChildren<Animator>();
     }
     void Update()
     {
