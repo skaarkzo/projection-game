@@ -78,7 +78,7 @@ public class EnemyController : MonoBehaviour
     {
         if (triggering)
         {
-            playerObject.GetComponent<Ayan1ControllerTest>().TakeDamage(damage);
+            playerObject.GetComponent<AyanMainController>().TakeDamage(damage);
         }
     }
     public void EnemyTakeDamage()
