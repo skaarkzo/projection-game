@@ -307,8 +307,12 @@ MonoBehaviour:
   look: 1
   isIdle: 0
   readyToThrow: 0
+  maxHealth: 100
+  currentHealth: 0
+  healthBar: {fileID: 0}
   walkSpeed: 5
   runSpeed: 7
+  jumpHeight: 0.4
   camTransform: {fileID: 1321456844}
   attackPoint: {fileID: 277150983}
   throwingObject: {fileID: 3436448764934922996}

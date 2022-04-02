@@ -5,14 +5,12 @@ using System.Threading.Tasks;
 
 public class AyanMainController : MainController
 {
-    public float walkSpeed;
-    public float runSpeed;
     public float crouchSpeed;
-    public float jumpHeight;
 
     public GameObject sword;
 
     private bool isAttacking;
+    private bool isCrouching;
 
     private bool isRolling = false;
 
@@ -88,9 +86,10 @@ public class AyanMainController : MainController
 
     public override void Idle()
     {
-        moveSpeed = 0;
-
         isIdle = true;
+        isCrouching = false;
+
+        moveSpeed = 0;
 
         this.anim.SetBool("CrouchWalk", false);
         this.anim.SetBool("Crouch", false);
@@ -101,6 +100,7 @@ public class AyanMainController : MainController
     public override void Walk()
     {
         isIdle = false;
+        isCrouching = false;
 
         moveSpeed = walkSpeed;
 
@@ -120,6 +120,7 @@ public class AyanMainController : MainController
     public override void Run()
     {
         isIdle = false;
+        isCrouching = false;
 
         moveSpeed = runSpeed;
 
@@ -129,16 +130,12 @@ public class AyanMainController : MainController
         this.anim.SetBool("Crouch", false);
         
         base.Run();
-
-        if (isRolling == true)
-        {
-            moveSpeed = 2;
-        }
     }
 
     private void Crouch()
     {
         isIdle = false;
+        isCrouching = true;
 
         moveSpeed = crouchSpeed;
 
@@ -152,6 +149,7 @@ public class AyanMainController : MainController
     private void CrouchIdle()
     {
         isIdle = true;
+        isCrouching = true;
 
         this.anim.SetBool("Crouch", true);
         this.anim.SetBool("CrouchWalk", false);
@@ -161,22 +159,12 @@ public class AyanMainController : MainController
         direction = Vector3.zero;
     }
 
-    private async void Jump()
-    { 
-
-        if (isIdle)
+    public override void Jump()
+    {
+        if (isCrouching == false)
         {
-            this.anim.SetTrigger("JumpIdle");
-            await Task.Delay(500);
+            base.Jump();
         }
-
-        else
-        {
-            this.anim.SetTrigger("JumpMove");
-        }
-
-        velocity.y = Mathf.Sqrt(jumpHeight * -6 * gravity);
-
     }
 
     private async void Attack()

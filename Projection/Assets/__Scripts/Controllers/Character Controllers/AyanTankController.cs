@@ -5,22 +5,16 @@ using System.Threading.Tasks;
 
 public class AyanTankController : MainController
 {
-
-    public float walkSpeed;
-    public float runSpeed;
-
     private bool isSliding;
 
     [Header("References")]
-    public Transform camTransform;
+    public Transform playerTransform;
     public Transform attackPoint;
     public GameObject throwingObject;
 
-    [Header("Settings")]
+    [Header("Throw Settings")]
     public int totalThrows;
     public float throwCooldown;
-
-    [Header("Throwing")]
     public float throwForce;
     public float throwUpwardForce;
 
@@ -57,6 +51,11 @@ public class AyanTankController : MainController
             else if (moveDirection.magnitude >= 0.1f && Input.GetKey(KeyCode.LeftShift))
             {
                 Run();
+            }
+
+            if (moveDirection.magnitude >= 0 && Input.GetKeyDown(KeyCode.Space))
+            {
+                Jump();
             }
 
             if (Input.GetKeyDown("q") && moveDirection.magnitude >= 0.1f && Input.GetKey(KeyCode.LeftShift))
@@ -110,6 +109,7 @@ public class AyanTankController : MainController
         this.anim.SetBool("Move", true);
         base.Run();
     }
+
     private void Slide()
     {
         isIdle = false;
@@ -140,7 +140,7 @@ public class AyanTankController : MainController
             controller.enabled = false;
         }
        
-        await Task.Delay(2000);
+        await Task.Delay(1500);
 
         controller.enabled = true;
     }
@@ -157,7 +157,7 @@ public class AyanTankController : MainController
             readyToThrow = false;
 
             // Instantiates throwing object
-            GameObject projectile = Instantiate(throwingObject, attackPoint.position, camTransform.rotation * Quaternion.Euler(45, 45, 45));
+            GameObject projectile = Instantiate(throwingObject, attackPoint.position, playerTransform.rotation * Quaternion.Euler(45, 45, 45));
 
             // Gets Rigidbody Component
             Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();

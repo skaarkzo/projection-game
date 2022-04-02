@@ -10,13 +10,12 @@ public class AyanSorcererController : MainController
     public float hoverSpeed = 3f;
     public float hoverHeight = 0.1f;
 
-    public float walkSpeed;
     public float flySpeed;
 
     public static bool isWalking;
     public static bool isFlying;
     public static bool isAttacking;
-    public bool allowHover;
+    private bool allowHover;
 
     // Update is called once per frame
     void Update()

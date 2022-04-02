@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
 
 public class MainController : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class MainController : MonoBehaviour
     [HideInInspector] public Vector3 moveDirection;
     [HideInInspector] public Vector3 direction;
 
+    [Header("Main Reference Settings")]
     public CharacterController controller;
     public Transform cam;
     [HideInInspector] public Animator anim;  
@@ -24,29 +26,35 @@ public class MainController : MonoBehaviour
     private float targetAngle;
     private float angle;
 
+    [Header("Player Turning Smooth Time Setting")]
     public float turnSmoothTime = 0.1f;
     private float turnSmoothVelocity;
 
+    [Header("Ground Check Settings")]
     public Transform groundCheck;
     public float groundCheckDistance;
     public LayerMask groundMask;
-    public bool isGrounded;
+    [HideInInspector] public bool isGrounded;
 
     [HideInInspector] public Vector3 velocity;
 
-    public float gravity = -9.81f;
-
-    public bool look = true;
-    public bool isIdle;
+    [HideInInspector] public bool look = true;
+    [HideInInspector] public bool isIdle;
 
     [HideInInspector] public bool readyToThrow;
 
+    [Header("Player Health Settings")]
     public int maxHealth = 100;
-    public int currentHealth;
-
+    [HideInInspector] public int currentHealth;
     public HealthBar healthBar;
 
-    public static bool lookDirectionLock = false;
+    [Header("Movement and Gravity Settings")]
+    public float walkSpeed;
+    public float runSpeed;
+    public float jumpHeight;
+    public float gravity = -9.81f;
+
+    [HideInInspector] public static bool lookDirectionLock = false;
 
     // Start is called before the first frame update
     void Start()
@@ -56,11 +64,11 @@ public class MainController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
 
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
-
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
 
         pos = transform.position;
     }
@@ -124,5 +132,23 @@ public class MainController : MonoBehaviour
     {
         this.anim.SetFloat("Vertical", moveZ, 0.1f, Time.deltaTime);
         this.anim.SetFloat("Horizontal", moveX, 0.1f, Time.deltaTime);
+    }
+
+    public virtual async void Jump()
+    {
+
+        if (isIdle)
+        {
+            this.anim.SetTrigger("JumpIdle");
+            await Task.Delay(500);
+        }
+
+        else
+        {
+            this.anim.SetTrigger("JumpMove");
+        }
+
+        velocity.y = Mathf.Sqrt(jumpHeight * -6 * gravity);
+
     }
 }
