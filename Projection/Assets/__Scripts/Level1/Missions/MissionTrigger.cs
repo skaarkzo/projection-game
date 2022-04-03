@@ -84,27 +84,21 @@ using UnityEngine;
 public class MissionTrigger : MonoBehaviour
 {
 
-    // Referencing other scripts 
-    private MissionManager missionManager;
-    private MissionWaypoint missionWaypoint;
+    private MissionManager missionManager; // Referencing other scripts 
 
     public int missionNumber; // Variable to store mission number
 
     public bool startMission; // Variable to start if the mission is a start mission 
     public bool endMission; // Variable to end if the mission is a start mission 
 
-    public bool enablePause; // Variable 
+    public bool enablePause;
 
-    public Transform target; // Target 
-
-    //public Transform target; // Target 
 
     // Start is called before the first frame update
     void Start()
     {
         // Linking other scripts
         missionManager = FindObjectOfType<MissionManager>();
-        missionWaypoint = FindObjectOfType<MissionWaypoint>();
     }
 
     // On trigger function
@@ -121,17 +115,6 @@ public class MissionTrigger : MonoBehaviour
                 if (startMission && !missionManager.missions[missionNumber].gameObject.activeSelf)
                 {
 
-                    if (target == null)
-                    {
-
-                    }
-                    else
-                    {
-                        missionWaypoint.target = target;
-                        missionWaypoint.img.gameObject.SetActive(true);
-                    }
-
-
                     if (enablePause == true)
                     {
                         PauseGame();
@@ -145,7 +128,6 @@ public class MissionTrigger : MonoBehaviour
                 if (endMission && missionManager.missions[missionNumber].gameObject.activeSelf)
                 {
                     missionManager.missions[missionNumber].EndMission(); // Ends mission
-                    missionWaypoint.img.gameObject.SetActive(false);
                 }
 
             }

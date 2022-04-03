@@ -3581,7 +3581,7 @@ GameObject:
   - component: {fileID: 4262851064258731728}
   - component: {fileID: 4262851064258731727}
   m_Layer: 0
-  m_Name: MerchantModel
+  m_Name: MerchantNPC
   m_TagString: MerchantNPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3763,7 +3763,7 @@ GameObject:
   - component: {fileID: 4720315388423632529}
   - component: {fileID: 4720315388423632528}
   m_Layer: 0
-  m_Name: BlacksmithModel
+  m_Name: BlacksmithNPC
   m_TagString: BlacksmithNPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
