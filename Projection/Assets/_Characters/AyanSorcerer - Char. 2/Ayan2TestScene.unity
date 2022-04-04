@@ -479,7 +479,7 @@ GameObject:
   - component: {fileID: 636668102}
   - component: {fileID: 636668103}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -553,14 +553,19 @@ MonoBehaviour:
     m_Bits: 64
   isGrounded: 0
   velocity: {x: 0, y: 0, z: 0}
-  gravity: -12
   look: 1
   isIdle: 0
+  readyToThrow: 0
+  maxHealth: 100
+  currentHealth: 0
+  healthBar: {fileID: 0}
+  walkSpeed: 5
+  runSpeed: 0
+  jumpHeight: 0
+  gravity: -12
   hoverSpeed: 3
   hoverHeight: 0.1
-  walkSpeed: 5
   flySpeed: 9
-  allowHover: 0
 --- !u!1 &1069944158
 GameObject:
   m_ObjectHideFlags: 0
@@ -2080,7 +2085,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5499280987807516964}
-  m_LocalRotation: {x: 0.18910751, y: 0.0000000084479606, z: -0.0000000016269286, w: 0.9819564}
+  m_LocalRotation: {x: 0.18910751, y: -0.000000008447955, z: 0.0000000016269276, w: 0.9819564}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

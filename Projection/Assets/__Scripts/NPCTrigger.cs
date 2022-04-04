@@ -13,7 +13,7 @@ public class NPCTrigger : MonoBehaviour
     private Vector3 playerPos;
     private Vector3 npcPos;
 
-    private void Update()
+    void Update()
     {
         anim = triggeringNPC.GetComponent<Animator>();
 
@@ -24,10 +24,9 @@ public class NPCTrigger : MonoBehaviour
 
         if (triggering)
         {
-
             Debug.Log("Player is triggering with " + triggeringNPC.name);
 
-            if (distance <= 3.5)
+            if (distance <= 3.5f)
             {
                 Debug.Log("Player is within distance");
 

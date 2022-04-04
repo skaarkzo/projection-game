@@ -162,6 +162,17 @@ public class AyanTankController : MainController
             // Gets Rigidbody Component
             Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
 
+            // Calculate Direction
+
+            Vector3 forceDirection = playerTransform.transform.forward;
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(playerTransform.position, playerTransform.forward, out hit, 500f))
+            {
+                forceDirection = (hit.point - attackPoint.position).normalized;
+            }
+
             // Add Force
             Vector3 addForce = transform.forward * throwForce + transform.up * throwUpwardForce;
 
