@@ -21,8 +21,6 @@ public class MainController : MonoBehaviour
     [HideInInspector] public float moveZ;
     [HideInInspector] public float moveX;
 
-    [HideInInspector] public Vector3 pos;
-
     private float targetAngle;
     private float angle;
 
@@ -57,7 +55,7 @@ public class MainController : MonoBehaviour
     [HideInInspector] public static bool lookDirectionLock = false;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         readyToThrow = true;
 
@@ -70,7 +68,6 @@ public class MainController : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
 
-        pos = transform.position;
     }
 
     public void InputManager()

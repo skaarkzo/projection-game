@@ -17,6 +17,13 @@ public class AyanSorcererController : MainController
     public static bool isAttacking;
     private bool allowHover;
 
+    [HideInInspector] public Vector3 pos;
+    public override void Start()
+    {
+        pos = transform.position;
+        base.Start();
+    }
+
     // Update is called once per frame
     void Update()
     {
