@@ -127,7 +127,7 @@ public class AyanSorcererController : MainController
 
         moveSpeed = walkSpeed;
 
-        CameraMovement();
+        PlayerCamera();
 
         this.anim.SetBool("Walk", true);
         this.anim.SetBool("WalkToFloatMove", false);
@@ -142,7 +142,7 @@ public class AyanSorcererController : MainController
 
         moveSpeed = flySpeed;
 
-        CameraMovement();
+        PlayerCamera();
 
         this.anim.SetLayerWeight(1, 0);
         this.anim.SetLayerWeight(2, 1);

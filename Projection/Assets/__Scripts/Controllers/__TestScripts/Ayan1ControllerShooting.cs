@@ -114,7 +114,7 @@ public class Ayan1ControllerShooting : MainController
 
         moveSpeed = walkSpeed;
 
-        CameraMovement();
+        PlayerCamera();
 
         this.anim.SetBool("CrouchWalk", false);
         this.anim.SetBool("Crouch", false);
@@ -134,7 +134,7 @@ public class Ayan1ControllerShooting : MainController
 
         moveSpeed = runSpeed;
 
-        CameraMovement();
+        PlayerCamera();
 
         this.anim.SetBool("CrouchWalk", false);
         this.anim.SetBool("Crouch", false);
@@ -149,7 +149,7 @@ public class Ayan1ControllerShooting : MainController
 
         moveSpeed = crouchSpeed;
 
-        CameraMovement();
+        PlayerCamera();
 
         this.anim.SetBool("Crouch", false);
         this.anim.SetBool("CrouchWalk", true);
@@ -164,7 +164,7 @@ public class Ayan1ControllerShooting : MainController
         this.anim.SetBool("Crouch", true);
         this.anim.SetBool("CrouchWalk", false);
 
-        CameraMovement();
+        PlayerCamera();
 
         direction = Vector3.zero;
     }
