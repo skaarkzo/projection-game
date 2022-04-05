@@ -12,8 +12,21 @@ public class AyanMainController : MainController
 
     private bool isAttacking;
     private bool isCrouching;
+    private bool isAiming;
 
     private bool isRolling = false;
+
+    [Header("References")]
+    public Transform playerTransform;
+    public Transform attackPoint;
+    public GameObject throwingObject;
+
+    [Header("Throw Settings")]
+    public int totalThrows;
+    public float throwCooldown;
+    public float throwForce;
+    public float throwUpwardForce;
+
 
     void Update()
     {
