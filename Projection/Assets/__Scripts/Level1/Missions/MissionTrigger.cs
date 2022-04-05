@@ -26,6 +26,11 @@ public class MissionTrigger : MonoBehaviour
         missionWaypoint = FindObjectOfType<MissionWaypoint>();
     }
 
+    private void Update()
+    {
+
+    }
+
     // On trigger function
     private void OnTriggerEnter(Collider other)
     {
@@ -37,7 +42,7 @@ public class MissionTrigger : MonoBehaviour
             {
 
                 // Checks to see if it is a start mission and if the mission has not been started
-                if (startMission && !missionManager.missions[missionNumber].gameObject.activeSelf)
+                if (!missionManager.missionStarted && startMission && !missionManager.missions[missionNumber].gameObject.activeSelf)
                 {
 
                     if (target == null)
@@ -50,30 +55,20 @@ public class MissionTrigger : MonoBehaviour
                         missionWaypoint.img.gameObject.SetActive(true);
                     }
 
-
-                    if (enablePause == true)
-                    {
-                        PauseGame();
-                    }
-
                     missionManager.missions[missionNumber].gameObject.SetActive(true); // Activates game object
                     missionManager.missions[missionNumber].StartMission(); // Starts mission
+                    missionManager.missionStarted = true;
                 }
 
                 // Checks to see if it is a end mission and if the mission has started
-                if (endMission && missionManager.missions[missionNumber].gameObject.activeSelf)
+                if (missionManager.missionStarted && endMission && missionManager.missions[missionNumber].gameObject.activeSelf)
                 {
                     missionManager.missions[missionNumber].EndMission(); // Ends mission
                     missionWaypoint.img.gameObject.SetActive(false);
+                    missionManager.missionStarted = false;
                 }
-
             }
         }
-    }
 
-    public void PauseGame()
-    {
-        Time.timeScale = 0;
     }
-
 }

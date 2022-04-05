@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 public class AyanMainController : MainController
 {
+    // Initialize Fields.
     public float crouchSpeed;
 
     public GameObject sword;
@@ -16,9 +17,11 @@ public class AyanMainController : MainController
 
     void Update()
     {
+        // Call the CursorLock and GroundedCheck functions from the parent class.
         CursorLock();
         GroundedCheck();
 
+        // Allow the player to move and aim if they are inside the game.
         if (look)
         {
             Move();
@@ -26,13 +29,16 @@ public class AyanMainController : MainController
         }
     }
 
+    // Control all of the player movements.
     public void Move()
     {
+        // Set the y-velocity to -2 so their y-value doesn't fluctuate from the ground check.
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
 
+        // Call the InputManager function from the parent class.
         InputManager();
 
         if (isGrounded)
@@ -104,7 +110,7 @@ public class AyanMainController : MainController
 
         moveSpeed = walkSpeed;
 
-        CameraMovement();
+        PlayerCamera();
 
         this.anim.SetBool("CrouchWalk", false);
         this.anim.SetBool("Crouch", false);
@@ -124,7 +130,7 @@ public class AyanMainController : MainController
 
         moveSpeed = runSpeed;
 
-        CameraMovement();
+        PlayerCamera();
 
         this.anim.SetBool("CrouchWalk", false);
         this.anim.SetBool("Crouch", false);
@@ -139,7 +145,7 @@ public class AyanMainController : MainController
 
         moveSpeed = crouchSpeed;
 
-        CameraMovement();
+        PlayerCamera();
 
         this.anim.SetBool("Crouch", false);
         this.anim.SetBool("CrouchWalk", true); 
@@ -154,7 +160,7 @@ public class AyanMainController : MainController
         this.anim.SetBool("Crouch", true);
         this.anim.SetBool("CrouchWalk", false);
 
-        CameraMovement();
+        PlayerCamera();
 
         direction = Vector3.zero;
     }

@@ -93,7 +93,7 @@ public class AyanTankController : MainController
         moveSpeed = walkSpeed;
         isIdle = false;
 
-        CameraMovement();
+        PlayerCamera();
 
         this.anim.SetBool("Move", true);
         base.Walk();
@@ -104,7 +104,7 @@ public class AyanTankController : MainController
         moveSpeed = runSpeed;
         isIdle = false;
 
-        CameraMovement();
+        PlayerCamera();
 
         this.anim.SetBool("Move", true);
         base.Run();
@@ -157,7 +157,7 @@ public class AyanTankController : MainController
             readyToThrow = false;
 
             // Instantiates throwing object
-            GameObject projectile = Instantiate(throwingObject, attackPoint.position, playerTransform.rotation * Quaternion.Euler(45, 45, 45));
+            GameObject projectile = Instantiate(throwingObject, attackPoint.position, playerTransform.rotation * Quaternion.Euler(90, 0, 0));
 
             // Gets Rigidbody Component
             Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();

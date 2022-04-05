@@ -10,6 +10,7 @@ public class MissionObject : MonoBehaviour
     public DialogueManager dialogueManager;
     public DialogueHolder dialogueHolder;
     public MissionWaypoint missionWaypoint;
+    public MissionTrigger missionTrigger;
 
     // Arrays to store start and end text
     public string[] startText;
@@ -28,6 +29,7 @@ public class MissionObject : MonoBehaviour
         // Linking other scripts
         dialogueManager = FindObjectOfType<DialogueManager>();
         missionWaypoint = FindObjectOfType<MissionWaypoint>();
+        missionTrigger = FindObjectOfType<MissionTrigger>();
     }
 
     // Update is called once per frame
@@ -59,7 +61,6 @@ public class MissionObject : MonoBehaviour
     // Start mission method
     public void StartMission()
     {
-
         dialogueManager.dialogueLines = startText; // Sets dialogue lines to start text set in unity
         dialogueManager.currentLine = 0; // Reseting current line
         dialogueManager.ShowDialogue(); // Shows dialogue
@@ -69,7 +70,6 @@ public class MissionObject : MonoBehaviour
     // End mission method
     public void EndMission()
     {
-
         dialogueManager.dialogueLines = endText; // Sets dialogue lines to end text set in unity
         dialogueManager.currentLine = 0; // Reseting current line
         dialogueManager.ShowDialogue(); // Shows dialogue

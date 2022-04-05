@@ -12,6 +12,9 @@ public class MissionManager : MonoBehaviour
 
     public string itemCollected; // String varianble to store item to be callected name
 
+    public bool missionStarted = false;
+    public bool missionEnded = false;
+
     // Start is called before the first frame update
     void Start()
     {
