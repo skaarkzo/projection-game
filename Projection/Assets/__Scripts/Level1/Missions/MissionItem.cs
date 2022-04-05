@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MissionItem : MonoBehaviour
 {
@@ -8,6 +9,11 @@ public class MissionItem : MonoBehaviour
     private MissionManager missionManager; // Referencing other scripts 
 
     public string itemName; // String variable to store item name
+
+    public GameObject obj;
+
+    public RawImage img; // Icon
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +33,7 @@ public class MissionItem : MonoBehaviour
             {
                 missionManager.itemCollected = itemName; // Sets item to be collected to item name set in unity
                 gameObject.SetActive(false); // Disables object upon collision
+                
             }
         }
     }

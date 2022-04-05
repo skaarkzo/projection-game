@@ -75,9 +75,7 @@ public class MissionObject : MonoBehaviour
         dialogueManager.ShowDialogue(); // Shows dialogue
 
         gameObject.SetActive(false); // Disables missions so it does not repeat
-
         missionManager.missionCompleted[missionNumber] = true; // Sets misson as completed 
-
     }
 
 

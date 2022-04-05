@@ -112,6 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missionNumber: 5
   itemName: SM_Prop_PowerGenerator_03_Gear_01
+  image: {fileID: 2800000, guid: dab83fae649f98e4ebea88253400a729, type: 3}
 --- !u!114 &6617267811334670318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,3 +128,5 @@ MonoBehaviour:
   missionNumber: 6
   startMission: 1
   endMission: 0
+  enablePause: 0
+  target: {fileID: 0}

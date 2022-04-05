@@ -112,6 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missionNumber: 7
   itemName: SM_Bld_Portal_01_Ring_01
+  image: {fileID: 2800000, guid: a4aefb7d53f91f14ea24dd6a96fd1b79, type: 3}
 --- !u!114 &1517374187593392418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,3 +128,5 @@ MonoBehaviour:
   missionNumber: 8
   startMission: 1
   endMission: 0
+  enablePause: 0
+  target: {fileID: 0}

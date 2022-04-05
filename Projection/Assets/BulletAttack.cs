@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class swordAttack : MonoBehaviour
+public class BulletAttack : MonoBehaviour
 {
 
     private bool triggering;
     public int damage = 1;
     private GameObject enemyObject;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -18,16 +18,9 @@ public class swordAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
-    /*private void inflictDamage()
-    {
-        if (triggering)
-        {
-            enemyObject.GetComponent<EnemyController>().EnemyTakeDamage(damage);
-        }
-    }*/
 
     private void OnTriggerEnter(Collider other)
     {
@@ -47,12 +40,4 @@ public class swordAttack : MonoBehaviour
         }
     }
 
-    /*private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject == enemyObject)
-        {
-            triggering = false;
-            Debug.Log("Sword GONE");
-        }
-    }*/
 }
