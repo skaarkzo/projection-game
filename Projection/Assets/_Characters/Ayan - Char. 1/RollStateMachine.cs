@@ -23,7 +23,7 @@ public class RollStateMachine : StateMachineBehaviour
 
         if (player != null)
         {
-            player.RollingComplete();
+            player.DuringRoll();
         }
     }
 
@@ -38,6 +38,4 @@ public class RollStateMachine : StateMachineBehaviour
             MainController.lookDirectionLock = false;
         }
     }
-
-
 }

@@ -18,19 +18,18 @@ public class AyanMainController : MainController
 
     [Header("References")]
     public Transform playerTransform;
-    public Transform attackPoint;
-    public GameObject throwingObject;
+    public Transform shootingPoint;
+    public GameObject shootingObject;
 
     [Header("Throw Settings")]
-    public int totalThrows;
-    public float throwCooldown;
-    public float throwForce;
-    public float throwUpwardForce;
-
+    public int totalBullets;
+    public float shootCooldown;
+    public float shootForce;
+    public float shootUpwardForce;
 
     void Update()
     {
-        // Call the CursorLock and GroundedCheck functions from the parent class.
+        // Call the CursorLock and GroundedCheck functions from the base class.
         CursorLock();
         GroundedCheck();
 
@@ -51,9 +50,10 @@ public class AyanMainController : MainController
             velocity.y = -2f;
         }
 
-        // Call the InputManager function from the parent class.
+        // Call the InputManager function from the base class.
         InputManager();
 
+        // Control all inputs to move the player.
         if (isGrounded)
         {
             if (moveDirection == Vector3.zero && !Input.GetKey("z"))
@@ -97,8 +97,10 @@ public class AyanMainController : MainController
             }
         }
 
+        // Move the player controller in the direction specified from the inputs and according the move speed.
         controller.Move(direction.normalized * moveSpeed * Time.deltaTime);
 
+        // Add gravity to the y-velocity and add gravity to the player.
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
@@ -110,9 +112,11 @@ public class AyanMainController : MainController
 
         moveSpeed = 0;
 
+        // Disable crouch animations on idle.
         this.anim.SetBool("CrouchWalk", false);
         this.anim.SetBool("Crouch", false);
 
+        // Call Idle function from the base class.
         base.Idle();
     }
 
@@ -121,19 +125,18 @@ public class AyanMainController : MainController
         isIdle = false;
         isCrouching = false;
 
+        // Set the moveSpeed to the walkSpeed.
         moveSpeed = walkSpeed;
 
+        // Call the PlayerCamera function from the base class.
         PlayerCamera();
 
+        // Disable crouch animations on normal walk.
         this.anim.SetBool("CrouchWalk", false);
         this.anim.SetBool("Crouch", false);
         
+        // Call Walk function from the base class.
         base.Walk();
-
-        if (isRolling == true)
-        {
-            moveSpeed = 2;
-        }
     }
 
     public override void Run()
@@ -156,13 +159,14 @@ public class AyanMainController : MainController
         isIdle = false;
         isCrouching = true;
 
+        // Set the moveSpeed to the crouchSpeed.
         moveSpeed = crouchSpeed;
 
         PlayerCamera();
 
+        // Set the Idle crouch to false but the crouch walk to true.
         this.anim.SetBool("Crouch", false);
         this.anim.SetBool("CrouchWalk", true); 
-
     }
 
     private void CrouchIdle()
@@ -170,16 +174,19 @@ public class AyanMainController : MainController
         isIdle = true;
         isCrouching = true;
 
+        // Set the Idle crouch to true but the crouch walk to false.
         this.anim.SetBool("Crouch", true);
         this.anim.SetBool("CrouchWalk", false);
 
         PlayerCamera();
 
+        // Prevents player from transforming position when Idle.
         direction = Vector3.zero;
     }
 
     public override void Jump()
     {
+        // If the player is not crouching, allow the player to jump by calling the Jump function from the base class.
         if (isCrouching == false)
         {
             base.Jump();
@@ -188,14 +195,17 @@ public class AyanMainController : MainController
 
     private async void Attack()
     {
+        // Delay the attack by 0.3s.
         await Task.Delay(300);
 
         isIdle = false;
         isAttacking = true;
 
+        // Pick a random attack and then trigger that attack.
         this.anim.SetInteger("AttackIndex", Random.Range(0, 2));
         this.anim.SetTrigger("Attack");
 
+        // Disable the controller while the animation is playing, then reenable it.
         controller.enabled = false;
 
         await Task.Delay(2000);
@@ -205,28 +215,31 @@ public class AyanMainController : MainController
 
     }
 
-
     private void Roll()
     {
+        // If the player is not already rolling, allow the player to roll.
         if (isRolling == false)
         {
             this.anim.SetTrigger("Roll");
             isRolling = true;
         }
-        
     }
 
-    public void RollingComplete()
+
+    public void DuringRoll()
     {
+        // Move the controller in the direction the player rolls and set isRolling to false.
         controller.Move(direction.normalized * Time.deltaTime);
         isRolling = false;
     }
 
     public void TakeDamage(int damage)
     {
+        // Decrease the damage of the character and set the health bar.
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
 
+        // Destroy the player if the health is below 0.
         if (currentHealth <= 0)
         {
             Destroy(this.gameObject);
@@ -236,6 +249,7 @@ public class AyanMainController : MainController
 
     private void Aim()
     {
+        // Is the player holds right click, the camera aims in and aims out when right click is released.
         if (Input.GetKey(KeyCode.Mouse1) && isAttacking == false)
         {
             mainCamera.SetActive(false);
@@ -258,45 +272,40 @@ public class AyanMainController : MainController
             isAiming = false;
         }
 
-        if (isAiming && readyToThrow && totalThrows > 0)
+        // If the player is aiming in, ready to shoot, and has sufficient bullets, he's allowed to shoot with left click.
+        if (isAiming && readyToShoot && totalBullets > 0)
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                Throw();
+                Shoot();
             }
         }
-
     }
 
-    public void Throw()
+    public void Shoot()
     {
-        readyToThrow = false;
+        readyToShoot = false;
 
-        // Instantiates throwing object
-        GameObject projectile = Instantiate(throwingObject, attackPoint.position, playerTransform.rotation * Quaternion.Euler(90, 0, 0));
+        // Instantiates shooting object
+        GameObject projectile = Instantiate(shootingObject, shootingPoint.position, playerTransform.rotation * Quaternion.Euler(90, 0, 0));
 
         // Gets Rigidbody Component
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
 
         // Add Force
-        Vector3 addForce = transform.forward * throwForce + transform.up * throwUpwardForce;
+        Vector3 addForce = transform.forward * shootForce + transform.up * shootUpwardForce;
 
         projectileRb.AddForce(addForce, ForceMode.Impulse);
 
-        totalThrows--;
+        totalBullets--;
 
-        // Implement Throw Cooldown
-        Invoke(nameof(ResetThrow), throwCooldown);
+        // Implement shoot Cooldown
+        Invoke(nameof(ResetShoot), shootCooldown);
     }
 
-    private void ResetThrow()
+    private void ResetShoot()
     {
-        readyToThrow = true;
-    }
-
-    public void DuringThrow()
-    {
-        controller.Move(direction.normalized * 0.5f * Time.deltaTime);
-        readyToThrow = false;
+        // Set readyToShoot to true.
+        readyToShoot = true;
     }
 }

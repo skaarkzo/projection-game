@@ -43,6 +43,7 @@ public class MainController : MonoBehaviour
     [HideInInspector] public bool isIdle;
 
     [HideInInspector] public bool readyToThrow;
+    [HideInInspector] public bool readyToShoot;
 
     [Header("Player Health Settings")]
     public int maxHealth = 100;
@@ -62,6 +63,7 @@ public class MainController : MonoBehaviour
     {
         // Set the readyToThrow to true for the third character to be able to throw knives.
         readyToThrow = true;
+        readyToShoot = true;
 
         // Initialize controller and animator.
         controller = GetComponent<CharacterController>();
@@ -107,7 +109,7 @@ public class MainController : MonoBehaviour
         }
     }
 
-    // Function for ground detection that creates a sphere at the player's feet and can be edited with the ground mask and ground check distance (diameter).
+    // Function for ground detection that creates a sphere at the player's feet and can be edited with the ground mask and ground check distance (radius).
     public void GroundedCheck()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckDistance, groundMask);
