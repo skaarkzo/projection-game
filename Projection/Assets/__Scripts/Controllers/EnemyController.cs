@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class EnemyController : MonoBehaviour
     public int currentHealth;
     public int pointsValue = 10;
 
+    public Slider slider;
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,12 +34,16 @@ public class EnemyController : MonoBehaviour
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        currentHealth = maxHealth;
+        slider.value = currentHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
+        slider.value = currentHealth;
         float distance = Vector3.Distance(target.position, transform.position);
+        Debug.Log(currentHealth);
 
         if (distance <= lookRadius)
         {
@@ -85,20 +92,20 @@ public class EnemyController : MonoBehaviour
             playerObject.GetComponent<AyanMainController>().TakeDamage(damage);
         }
     }
-    public void EnemyTakeDamage()
+    public void EnemyTakeDamage(int damage)
     {
-
-        currentHealth -= 10;
+        currentHealth -= damage;
 
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
         triggering = true;
-        Debug.Log("trigerring");
+        //Debug.Log("trigerring");
     }
 
     private void OnTriggerExit(Collider other)
