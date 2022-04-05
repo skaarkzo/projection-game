@@ -192,29 +192,6 @@ public class AyanMainController : MainController
 
     }
 
-    private void Aim()
-    {
-        if (Input.GetKey(KeyCode.Mouse1) && isAttacking == false)
-        {
-            mainCamera.SetActive(false);
-            aimCamera.SetActive(true);
-            sword.SetActive(false);
-
-            this.anim.SetBool("Aim", true);
-            controller.enabled = false;
-
-        }
-
-        else if (!Input.GetKey(KeyCode.Mouse1) && isAttacking == false)
-        {
-            mainCamera.SetActive(true);
-            aimCamera.SetActive(false);
-            sword.SetActive(true);
-
-            this.anim.SetBool("Aim", false);
-            controller.enabled = true;
-        }
-    }
 
     private void Roll()
     {
@@ -241,5 +218,72 @@ public class AyanMainController : MainController
         {
             Destroy(this.gameObject);
         }
+
+    }
+
+    private void Aim()
+    {
+        if (Input.GetKey(KeyCode.Mouse1) && isAttacking == false)
+        {
+            mainCamera.SetActive(false);
+            aimCamera.SetActive(true);
+            sword.SetActive(false);
+
+            this.anim.SetBool("Aim", true);
+            controller.enabled = false;
+            isAiming = true;
+        }
+
+        else if (!Input.GetKey(KeyCode.Mouse1) && isAttacking == false)
+        {
+            mainCamera.SetActive(true);
+            aimCamera.SetActive(false);
+            sword.SetActive(true);
+
+            this.anim.SetBool("Aim", false);
+            controller.enabled = true;
+            isAiming = false;
+        }
+
+        if (isAiming && readyToThrow && totalThrows > 0)
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                Throw();
+            }
+        }
+
+    }
+
+    public void Throw()
+    {
+        readyToThrow = false;
+
+        // Instantiates throwing object
+        GameObject projectile = Instantiate(throwingObject, attackPoint.position, playerTransform.rotation * Quaternion.Euler(90, 0, 0));
+
+        // Gets Rigidbody Component
+        Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+
+        // Add Force
+        Vector3 addForce = transform.forward * throwForce + transform.up * throwUpwardForce;
+
+        projectileRb.AddForce(addForce, ForceMode.Impulse);
+
+        totalThrows--;
+
+        // Implement Throw Cooldown
+        Invoke(nameof(ResetThrow), throwCooldown);
+    }
+
+    private void ResetThrow()
+    {
+        readyToThrow = true;
+    }
+
+    public void DuringThrow()
+    {
+        controller.Move(direction.normalized * 0.5f * Time.deltaTime);
+        readyToThrow = false;
     }
 }
