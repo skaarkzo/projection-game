@@ -30,7 +30,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerObject = GameObject.Find("Player");
+        //playerObject = GameObject.Find("Player");
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
@@ -41,6 +41,8 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        playerObject = CharacterSwap.currentPlayer;
+        target = PlayerManager.instance.player.transform;
         slider.value = currentHealth;
         float distance = Vector3.Distance(target.position, transform.position);
         Debug.Log(currentHealth);
@@ -89,7 +91,7 @@ public class EnemyController : MonoBehaviour
     {
         if (triggering)
         {
-            playerObject.GetComponent<AyanMainController>().TakeDamage(damage);
+            playerObject.GetComponent<MainController>().TakeDamage(damage);
         }
     }
     public void EnemyTakeDamage(int damage)
