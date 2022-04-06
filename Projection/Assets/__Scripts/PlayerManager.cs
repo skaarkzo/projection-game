@@ -17,4 +17,9 @@ public class PlayerManager : MonoBehaviour
     
     public GameObject player;
 
+    private void Update()
+    {
+        player = CharacterSwap.currentPlayer;
+    }
+
 }

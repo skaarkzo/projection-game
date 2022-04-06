@@ -42,6 +42,8 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         slider.value = currentHealth;
+        target = PlayerManager.instance.player.transform;
+        inflictDamage();
         float distance = Vector3.Distance(target.position, transform.position);
         Debug.Log(currentHealth);
 
@@ -89,7 +91,8 @@ public class EnemyController : MonoBehaviour
     {
         if (triggering)
         {
-            playerObject.GetComponent<AyanMainController>().TakeDamage(damage);
+            playerObject.GetComponent<MainController>().TakeDamage(damage);
+            Debug.Log("Hi");
         }
     }
     public void EnemyTakeDamage(int damage)
