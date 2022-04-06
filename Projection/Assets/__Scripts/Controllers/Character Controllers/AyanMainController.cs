@@ -216,24 +216,26 @@ public class AyanMainController : MainController
 
     private async void Attack()
     {
-        // Delay the attack by 0.3s.
-        await Task.Delay(300);
+        if (isAiming == false)
+        {
+            // Delay the attack by 0.3s.
+            await Task.Delay(300);
 
-        isIdle = false;
-        isAttacking = true;
+            isIdle = false;
+            isAttacking = true;
 
-        // Pick a random attack and then trigger that attack.
-        this.anim.SetInteger("AttackIndex", Random.Range(0, 2));
-        this.anim.SetTrigger("Attack");
+            // Pick a random attack and then trigger that attack.
+            this.anim.SetInteger("AttackIndex", Random.Range(0, 2));
+            this.anim.SetTrigger("Attack");
 
-        // Disable the controller while the animation is playing, then reenable it.
-        controller.enabled = false;
+            // Disable the controller while the animation is playing, then reenable it.
+            controller.enabled = false;
 
-        await Task.Delay(2000);
+            await Task.Delay(2000);
 
-        controller.enabled = true;
-        isAttacking = false;
-
+            controller.enabled = true;
+            isAttacking = false;
+        }
     }
 
     private void Roll()
