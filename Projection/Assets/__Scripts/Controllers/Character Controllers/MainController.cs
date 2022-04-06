@@ -176,19 +176,4 @@ public class MainController : MonoBehaviour
         // To make the player jump, set the y velocity of the player to the following equation.
         velocity.y = Mathf.Sqrt(jumpHeight * -6 * gravity);
     }
-
-    public void TakeDamage(int damage)
-    {
-        // Decrease the damage of the character and set the health bar.
-        currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
-
-        // Destroy the player if the health is below 0.
-        if (currentHealth <= 0)
-        {
-            Destroy(this.gameObject);
-        }
-
-    }
-
 }
