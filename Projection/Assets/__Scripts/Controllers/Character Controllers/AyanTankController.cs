@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 public class AyanTankController : MainController
 {
+    // Initialize variables
     private bool isSliding;
 
     [Header("References")]
@@ -21,21 +22,26 @@ public class AyanTankController : MainController
     // Update is called once per frame
     void Update()
     {
+        // Call the CursorLock and GroundedCheck functions from the base class.
         CursorLock();
         GroundedCheck();
 
         Move();
     }
 
+    // Allow the player to move
     private void Move()
     {
+        // Set the y-velocity to -2 so their y-value doesn't fluctuate from the ground check.
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
 
+        // Call the InputManager function from the base class.
         InputManager();
 
+        // Move the player controller in the direction specified from the inputs and according the move speed.
         if (isGrounded)
         {
             if (moveDirection == Vector3.zero)
@@ -80,40 +86,51 @@ public class AyanTankController : MainController
         controller.Move(velocity * Time.deltaTime);
     }
 
+    // Idling animations
     public override void Idle()
     {
+        // Set boooleans
         moveSpeed = 0;
         isIdle = true;
 
+        // Set animation
         this.anim.SetBool("Move", false);
     }
 
+    // Walking animation
     public override void Walk()
     {
+        // Set booleans
         moveSpeed = walkSpeed;
         isIdle = false;
 
         PlayerCamera();
 
+        // Set animation
         this.anim.SetBool("Move", true);
         base.Walk();
     }
 
+    // Running animation
     public override void Run()
     {
+        // Set booleans
         moveSpeed = runSpeed;
         isIdle = false;
 
         PlayerCamera();
 
+        // Set animation
         this.anim.SetBool("Move", true);
         base.Run();
     }
 
+    // Sliding animation
     private void Slide()
     {
         isIdle = false;
 
+        // Set animation
         if (isSliding == false)
         {
             this.anim.SetTrigger("Slide");
@@ -122,6 +139,7 @@ public class AyanTankController : MainController
 
     }
 
+    // Translate player while sliding
     public void DuringSlide()
     {
         isIdle = false;
@@ -130,6 +148,7 @@ public class AyanTankController : MainController
         isSliding = false;
     }
 
+    // Melee combat animation
     private async void HandCombat()
     {
         if (isIdle == true)
@@ -145,6 +164,7 @@ public class AyanTankController : MainController
         controller.enabled = true;
     }
 
+    // Method used to generate throwing knives
     public async void Throw()
     {
         if (isIdle == true)
@@ -185,11 +205,13 @@ public class AyanTankController : MainController
         }   
     }
 
+    // Ready another knife for throwing
     private void ResetThrow()
     {
         readyToThrow = true;
     }
 
+    // Character moves slightly, cooldown reset
     public void DuringThrow()
     {
         controller.Move(direction.normalized * 0.5f * Time.deltaTime);
