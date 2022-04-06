@@ -11,6 +11,7 @@ public class SlideStateMachine : StateMachineBehaviour
 
         if (player != null)
         {
+            // Change controller height when slide animation starts and lock the direction of player so direction is not changed while slide.
             player.controller.height = 0.5f;
             player.controller.radius = 0.8f;
             player.controller.center = new Vector3(0, 0.82f, 0);
@@ -25,6 +26,7 @@ public class SlideStateMachine : StateMachineBehaviour
 
         if (player != null)
         {
+            // Call the DuringRoll function from the AyanTankController script.
             player.DuringSlide();
         }
     }
@@ -36,6 +38,7 @@ public class SlideStateMachine : StateMachineBehaviour
 
         if (player != null)
         {
+            // Reset the controller and direction lock settings.
             player.controller.height = 2f;
             player.controller.radius = 0.3f;
             player.controller.center = new Vector3(0, 1, 0);

@@ -5,6 +5,7 @@ using UnityEngine;
 public class NPCTrigger : MonoBehaviour
 {
 
+    // Initialize Fields.
     private GameObject triggeringNPC;
     private bool triggering;
 
@@ -15,11 +16,13 @@ public class NPCTrigger : MonoBehaviour
 
     void Update()
     {
+        // Get the animator component.
         anim = triggeringNPC.GetComponent<Animator>();
 
         playerPos = GameObject.Find("Player").transform.position;
         npcPos = GameObject.Find(triggeringNPC.name).transform.position;
 
+        // Find the distance between the player and npc.
         float distance = Mathf.Sqrt(Mathf.Pow((playerPos.x - npcPos.x), 2) + Mathf.Pow((playerPos.y - npcPos.y), 2) + Mathf.Pow((playerPos.z - npcPos.z), 2));
 
         if (triggering)
@@ -40,6 +43,7 @@ public class NPCTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // If the BlacksmithNPC is triggered, play the wave and set the triggeringNPC to the Blacksmith.
         if (other.tag == "BlacksmithNPC")
         {
             triggering = true;
@@ -49,6 +53,7 @@ public class NPCTrigger : MonoBehaviour
 
         }
 
+        // If the MerchantNPC is triggered, play the wave and set the triggeringNPC to the Merchant.
         else if (other.tag == "MerchantNPC")
         {
             triggering = true;
@@ -65,6 +70,7 @@ public class NPCTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        // If the no NPC is being triggered, set the triggeringNPC to null.
         if (other.tag == "BlacksmithNPC")
         {
             triggering = false;

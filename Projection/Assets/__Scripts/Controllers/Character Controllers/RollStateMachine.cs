@@ -11,6 +11,7 @@ public class RollStateMachine : StateMachineBehaviour
 
         if (player != null)
         {
+            // Change controller height when roll animation starts and lock the direction of player so direction is not changed while rolling.
             player.controller.height = 1f;
             player.controller.center = new Vector3(0, 0.5f, 0);
             MainController.lookDirectionLock = true;
@@ -23,6 +24,7 @@ public class RollStateMachine : StateMachineBehaviour
 
         if (player != null)
         {
+            // Call the DuringRoll function from the AyanMainController script.
             player.DuringRoll();
         }
     }
@@ -33,6 +35,7 @@ public class RollStateMachine : StateMachineBehaviour
 
         if (player != null)
         {
+            // Reset the controller and direction lock settings.
             player.controller.height = 2f;
             player.controller.center = new Vector3(0, 1, 0);
             MainController.lookDirectionLock = false;

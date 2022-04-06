@@ -4,25 +4,14 @@ using UnityEngine;
 
 public class EffectScript : MonoBehaviour
 {
-
+    // Initialize Fields.
     public GameObject[] effect;
     public Transform[] effectTransform;
     public Transform[] effectRotation;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void UseEffect(int number)
     {
+        // Instantiate the effect.
         Instantiate(effect[number], effectTransform[number].position, effectRotation[number].rotation);
     }
 }
