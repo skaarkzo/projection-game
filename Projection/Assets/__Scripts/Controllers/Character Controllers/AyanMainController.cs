@@ -314,6 +314,6 @@ public class AyanMainController : MainController
 
     public void incrementMission(int i)
     {
-        missionGUI.SetText("Missions Completed: " + i + "/9");
+        missionGUI.SetText("Missions Completed: " + i + "/4");
     }
 }

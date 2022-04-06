@@ -14,12 +14,15 @@ public class MissionItem : MonoBehaviour
 
     public RawImage img; // Icon
 
+    private GameObject playerObj;
 
     // Start is called before the first frame update
     void Start()
     {
         // Linking other scripts
         missionManager = FindObjectOfType<MissionManager>();
+
+        playerObj = GameObject.Find("Player");
     }
 
     // On trigger funtion
@@ -34,9 +37,11 @@ public class MissionItem : MonoBehaviour
                 missionManager.itemCollected = itemName; // Sets item to be collected to item name set in unity
                 gameObject.SetActive(false); // Disables object upon collision
                 missionManager.missionStarted = false;
-
+                missionManager.missionsCompleted++;
+                playerObj.GetComponent<AyanMainController>().incrementMission(missionManager.missionsCompleted);
             }
         }
+
     }
 
 }

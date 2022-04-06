@@ -4,7 +4,6 @@ public class MissionObject : MonoBehaviour
 {
 
     public int missionNumber;   // Variable to store mission number 
-    public GameObject playerObj;
 
     // Referencing other scripts 
     public MissionManager missionManager;
@@ -76,8 +75,6 @@ public class MissionObject : MonoBehaviour
 
         gameObject.SetActive(false); // Disables missions so it does not repeat
         missionManager.missionCompleted[missionNumber] = true; // Sets misson as completed 
-        missionManager.missionsCompleted++;
-        playerObj.GetComponent<AyanMainController>().incrementMission(missionManager.missionsCompleted);
     }
 
 
