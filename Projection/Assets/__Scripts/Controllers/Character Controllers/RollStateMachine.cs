@@ -21,7 +21,7 @@ public class RollStateMachine : StateMachineBehaviour
     public override void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         var player = animator.gameObject.transform.parent.GetComponent<AyanMainController>();
-
+       
         if (player != null)
         {
             // Call the DuringRoll function from the AyanMainController script.
