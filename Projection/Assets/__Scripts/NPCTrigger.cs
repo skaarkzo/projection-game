@@ -7,37 +7,18 @@ public class NPCTrigger : MonoBehaviour
 
     // Initialize Fields.
     private GameObject triggeringNPC;
-    private bool triggering;
+    [HideInInspector] public bool triggering;
 
     private static Animator anim;
-
-    private Vector3 playerPos;
-    private Vector3 npcPos;
 
     void Update()
     {
         // Get the animator component.
         anim = triggeringNPC.GetComponent<Animator>();
 
-        playerPos = GameObject.Find("Player").transform.position;
-        npcPos = GameObject.Find(triggeringNPC.name).transform.position;
-
-        // Find the distance between the player and npc.
-        float distance = Mathf.Sqrt(Mathf.Pow((playerPos.x - npcPos.x), 2) + Mathf.Pow((playerPos.y - npcPos.y), 2) + Mathf.Pow((playerPos.z - npcPos.z), 2));
-
         if (triggering)
         {
             Debug.Log("Player is triggering with " + triggeringNPC.name);
-
-            if (distance <= 3.5f)
-            {
-                Debug.Log("Player is within distance");
-
-                if (Input.GetKey("e"))
-                {
-                    Debug.Log("Player clicked E");
-                }
-            }
         }
     }
 
