@@ -176,9 +176,10 @@ GameObject:
   - component: {fileID: 64780769549379192}
   - component: {fileID: -8279317766096631334}
   - component: {fileID: -1703551261808156298}
+  - component: {fileID: -8922708464110673103}
   m_Layer: 0
   m_Name: SM_Wep_Shotgun_02
-  m_TagString: Untagged
+  m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -291,3 +292,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   img: {fileID: 0}
+--- !u!114 &-8922708464110673103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924490103925104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 573022fc0cf0221459a735f9fcb507c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gun: {fileID: 0}

@@ -30,6 +30,24 @@ public class AyanMainController : MainController
 
     public TextMeshProUGUI missionGUI;
 
+    public GameObject gun;
+
+    public override void Start()
+    {
+        base.Start();
+        gun.SetActive(false);
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+
+        if (other.gameObject.name == "SM_Wep_Shotgun_02(Clone)")
+        {
+            gun.SetActive(true);
+        }
+
+    }
+
     void Update()
     {
         // Call the CursorLock and GroundedCheck functions from the base class.
