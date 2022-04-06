@@ -32,7 +32,6 @@ public class AyanSorcererController : MainController
 
         // Allow the player to move and hover up and down
         Move();
-        Hover();
     }
 
     // Control all of the player movements
@@ -84,21 +83,12 @@ public class AyanSorcererController : MainController
         // Move the player controller in the direction specified from the inputs and according the move speed.
         controller.Move(direction.normalized * moveSpeed * Time.deltaTime);
 
+        // Add gravity.
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
     }
 
-    private void Hover()
-    {
-        if (allowHover == true)
-        {
-            // Calculate new y-position of the player.
-            float newY = Mathf.Sin(Time.time * hoverSpeed) * hoverHeight + pos.y;
-
-            // Set the player's new y-position.
-            transform.position = new Vector3(transform.position.x, newY, transform.position.z);
-        } 
-    }
-
-    // Character aniimation while idling
+    // Character animation while idling
     private void FloatIdle()
     {
         moveSpeed = 0;
@@ -107,19 +97,8 @@ public class AyanSorcererController : MainController
         isWalking = false;
         isFlying = false;
 
-        // Only hover when not attacking
-        if (isAttacking == true)
-        {
-            allowHover = false;
-        }
-
-        else
-        {
-            allowHover = true;
-        }
-
-        // Chang animation to idling
-        this.anim.SetLayerWeight(1, 1);
+        // Change animation to idling
+        this.anim.SetLayerWeight(3, 1);
         this.anim.SetBool("Walk", false);
         this.anim.SetBool("IdleToFloatMove", false);
         this.anim.SetBool("WalkToFloatMove", false);
@@ -144,6 +123,7 @@ public class AyanSorcererController : MainController
         this.anim.SetBool("Walk", true);
         this.anim.SetBool("WalkToFloatMove", false);
         this.anim.SetLayerWeight(1, 0);
+        this.anim.SetLayerWeight(3, 0);
     }
 
     // Character animation while sprinting (flying)
@@ -161,6 +141,7 @@ public class AyanSorcererController : MainController
 
         this.anim.SetLayerWeight(1, 0);
         this.anim.SetLayerWeight(2, 1);
+        this.anim.SetLayerWeight(3, 1);
 
         // Set animations
         if (isIdle == false)
