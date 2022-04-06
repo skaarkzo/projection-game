@@ -175,7 +175,6 @@ GameObject:
   - component: {fileID: 23714620663513628}
   - component: {fileID: 64780769549379192}
   - component: {fileID: -8279317766096631334}
-  - component: {fileID: 2601241058129826255}
   - component: {fileID: -1703551261808156298}
   m_Layer: 0
   m_Name: SM_Wep_Shotgun_02
@@ -276,26 +275,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionNumber: 3
-  itemName: SM_Wep_Assault_02
+  itemName: SM_Wep_Shotgun_02
   obj: {fileID: 0}
   img: {fileID: 0}
---- !u!114 &2601241058129826255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1924490103925104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a2a3d1f8c3f61e499e4011993004f2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  missionNumber: 4
-  startMission: 1
-  endMission: 0
-  enablePause: 0
-  target: {fileID: 0}
 --- !u!114 &-1703551261808156298
 MonoBehaviour:
   m_ObjectHideFlags: 0
