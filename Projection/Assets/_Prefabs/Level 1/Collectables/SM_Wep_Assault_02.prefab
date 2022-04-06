@@ -94,7 +94,6 @@ GameObject:
   - component: {fileID: 6581523962743999294}
   - component: {fileID: 6620321169950769618}
   - component: {fileID: 4544014826739474663}
-  - component: {fileID: 2093384468205784674}
   m_Layer: 0
   m_Name: SM_Wep_Assault_02
   m_TagString: Collectable_Part1
@@ -197,21 +196,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missionNumber: 3
   itemName: SM_Wep_Assault_02
---- !u!114 &2093384468205784674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6557688035594288846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a2a3d1f8c3f61e499e4011993004f2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  missionNumber: 4
-  startMission: 1
-  endMission: 0
+  obj: {fileID: 0}
+  img: {fileID: 0}
 --- !u!1 &6557760030354048882
 GameObject:
   m_ObjectHideFlags: 0

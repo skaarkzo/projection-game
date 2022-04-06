@@ -17,6 +17,19 @@ public class HotBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+
+    // On trigger funtion
+    private void OnTriggerEnter(Collider other)
+    {
+        // Checks tag of object colliding to insure it is the player
+        if (other.tag == "Player")
+        {
+           
+
+
+        }
+    }
+
 }

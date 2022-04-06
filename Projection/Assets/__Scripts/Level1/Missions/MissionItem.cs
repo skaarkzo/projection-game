@@ -33,7 +33,8 @@ public class MissionItem : MonoBehaviour
             {
                 missionManager.itemCollected = itemName; // Sets item to be collected to item name set in unity
                 gameObject.SetActive(false); // Disables object upon collision
-                
+                missionManager.missionStarted = false;
+
             }
         }
     }
