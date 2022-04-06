@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Threading.Tasks;
+using TMPro;
 
 public class AyanMainController : MainController
 {
@@ -26,6 +27,8 @@ public class AyanMainController : MainController
     public float shootCooldown;
     public float shootForce;
     public float shootUpwardForce;
+
+    public TextMeshProUGUI missionGUI;
 
     void Update()
     {
@@ -307,5 +310,10 @@ public class AyanMainController : MainController
     {
         // Set readyToShoot to true.
         readyToShoot = true;
+    }
+
+    public void incrementMission(int i)
+    {
+        missionGUI.SetText("Missions Completed: " + i + "/9");
     }
 }

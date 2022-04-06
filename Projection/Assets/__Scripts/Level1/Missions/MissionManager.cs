@@ -5,6 +5,7 @@ public class MissionManager : MonoBehaviour
 
     public MissionObject[] missions; // Stores missions 
     public bool[] missionCompleted; // Variable to store if mission is completed or not
+    public int missionsCompleted = 0;
 
     // Referencing other scripts 
     public DialogueManager dialogueManager;

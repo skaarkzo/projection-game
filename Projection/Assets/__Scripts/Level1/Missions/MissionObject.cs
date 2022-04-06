@@ -4,6 +4,7 @@ public class MissionObject : MonoBehaviour
 {
 
     public int missionNumber;   // Variable to store mission number 
+    public GameObject playerObj;
 
     // Referencing other scripts 
     public MissionManager missionManager;
@@ -64,7 +65,6 @@ public class MissionObject : MonoBehaviour
         dialogueManager.dialogueLines = startText; // Sets dialogue lines to start text set in unity
         dialogueManager.currentLine = 0; // Reseting current line
         dialogueManager.ShowDialogue(); // Shows dialogue
-
     }
 
     // End mission method
@@ -76,6 +76,8 @@ public class MissionObject : MonoBehaviour
 
         gameObject.SetActive(false); // Disables missions so it does not repeat
         missionManager.missionCompleted[missionNumber] = true; // Sets misson as completed 
+        missionManager.missionsCompleted++;
+        playerObj.GetComponent<AyanMainController>().incrementMission(missionManager.missionsCompleted);
     }
 
 
