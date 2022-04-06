@@ -1,41 +1,41 @@
-using UnityEngine;
+//using UnityEngine;
 
-public class Bullet : MonoBehaviour
-{
+//public class Bullet : MonoBehaviour
+//{
 
-    private Transform target;
-    private GameObject playerObject;
-    public float speed = 20f;
+//    private Transform target;
+//    private GameObject playerObject;
+//    public float speed = 20f;
 
-    private void Start()
-    {
-        playerObject = GameObject.Find("Player");
-    }
+//    private void Start()
+//    {
+//        playerObject = GameObject.Find("Player");
+//    }
 
-    public void Seek(Transform _target)
-    {
-        target = _target;
-    }
+//    public void Seek(Transform _target)
+//    {
+//        target = _target;
+//    }
 
-    // Update is called once per frame
-    void Update()
-    {
+//    // Update is called once per frame
+//    void Update()
+//    {
         
-        if (target == null)
-        {
-            Destroy(gameObject);
-            return;
-        }
+//        if (target == null)
+//        {
+//            Destroy(gameObject);
+//            return;
+//        }
 
-        Vector3 dir = target.position - transform.position;
-        float distanceThisFrame = speed * Time.deltaTime;
+//        Vector3 dir = target.position - transform.position;
+//        float distanceThisFrame = speed * Time.deltaTime;
 
-        transform.Translate(dir.normalized * distanceThisFrame, Space.World);
-    }
+//        transform.Translate(dir.normalized * distanceThisFrame, Space.World);
+//    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        playerObject.GetComponent<Ayan1ControllerTest>().TakeDamage(1);
-        Destroy(gameObject);
-    }
-}
+//    private void OnTriggerEnter(Collider other)
+//    {
+//        playerObject.GetComponent<Ayan1ControllerTest>().TakeDamage(1);
+//        Destroy(gameObject);
+//    }
+//}
