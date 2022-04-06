@@ -22,15 +22,15 @@ public class AyanMainController : MainController
     public Transform shootingPoint;
     public GameObject shootingObject;
 
-    [Header("Throw Settings")]
+    [Header("Shooting Settings")]
     public int totalBullets;
     public float shootCooldown;
     public float shootForce;
     public float shootUpwardForce;
-
-    public TextMeshProUGUI missionGUI;
-
     public GameObject gun;
+
+    [Header("Mission Settings")]
+    public TextMeshProUGUI missionGUI;
 
     public override void Start()
     {
@@ -275,7 +275,6 @@ public class AyanMainController : MainController
         {
             mainCamera.SetActive(false);
             aimCamera.SetActive(true);
-            sword.SetActive(false);
 
             this.anim.SetBool("Aim", true);
             controller.enabled = false;
@@ -286,7 +285,6 @@ public class AyanMainController : MainController
         {
             mainCamera.SetActive(true);
             aimCamera.SetActive(false);
-            sword.SetActive(true);
 
             this.anim.SetBool("Aim", false);
             controller.enabled = true;
@@ -312,6 +310,15 @@ public class AyanMainController : MainController
 
         // Gets Rigidbody Component
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+
+        Vector3 forceDirection = playerTransform.transform.forward;
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(playerTransform.position, playerTransform.forward, out hit, 500f))
+        {
+            forceDirection = (hit.point - shootingPoint.position).normalized;
+        }
 
         // Add Force
         Vector3 addForce = transform.forward * shootForce + transform.up * shootUpwardForce;
