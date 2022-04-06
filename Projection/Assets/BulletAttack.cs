@@ -29,7 +29,7 @@ public class BulletAttack : MonoBehaviour
             enemyObject.GetComponent<EnemyController>().EnemyTakeDamage(damage);
             enemyObject.GetComponent<CapsuleCollider>().enabled = false;
             //GetComponent<BoxCollider2D>().enabled = false;
-            StartCoroutine(EnableBox(2.0F));
+            StartCoroutine(EnableBox(0.5F));
             Debug.Log("Sword TRIGEER");
         }
 
