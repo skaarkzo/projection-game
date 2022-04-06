@@ -7,8 +7,8 @@ public class CharacterSwap : MonoBehaviour
 {
 
     public List<GameObject> players;
-    public GameObject currentPlayer;
-    public GameObject previousPlayer;
+    public static GameObject currentPlayer;
+    public static GameObject previousPlayer;
 
     public CinemachineFreeLook cam;
 

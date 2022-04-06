@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 19ef3a63d3effb34299d3e6a9c2f26fe
+guid: 0720f84049e5a0345af7e1eeab78f948
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Standing Melee Attack Horizontal
+    second: Breathing Idle
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -19,7 +19,13 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     rigImportErrors: 
-    rigImportWarnings: 
+    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
+      copied configuration does not match position in animation file:\n\t'mixamorig:LeftUpLeg'
+      : position error = 9.904360 mm\n\t'mixamorig:LeftLeg' : position error = 2.931872
+      mm\n\t'mixamorig:LeftFoot' : position error = 56.254593 mm\n\t'mixamorig:LeftToeBase'
+      : position error = 3.067200 mm\n\t'mixamorig:RightUpLeg' : position error =
+      8.798934 mm\n\t'mixamorig:RightLeg' : position error = 2.821714 mm\n\t'mixamorig:RightFoot'
+      : position error = 56.274841 mm\n"
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -35,11 +41,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Standing Melee Attack Horizontal
+      name: Breathing Idle
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 72
+      lastFrame: 284
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -48,12 +54,12 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
+      keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
