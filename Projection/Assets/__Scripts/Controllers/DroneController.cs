@@ -25,7 +25,7 @@ public class DroneController : MonoBehaviour
     public int currentHealth;
     public int pointsValue = 5;
 
-    //Start is called before the first frame update
+    // Start is called before the first frame update
     void Start()
     {
         playerObject = GameObject.Find("Player");
@@ -77,6 +77,7 @@ public class DroneController : MonoBehaviour
 
     public void EnemyTakeDamage()
     {
+
         currentHealth -= 10;
 
         if (currentHealth <= 0)
