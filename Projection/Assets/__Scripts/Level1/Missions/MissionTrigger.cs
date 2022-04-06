@@ -35,8 +35,6 @@ public class MissionTrigger : MonoBehaviour
     // On trigger function
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Entered");
-
 
         //Checks tag of object colliding to insure it is the player
         if (other.tag == "Player")

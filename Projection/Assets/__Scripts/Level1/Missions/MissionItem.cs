@@ -7,6 +7,7 @@ public class MissionItem : MonoBehaviour
     public int missionNumber; // Variable to store mission number
 
     private MissionManager missionManager; // Referencing other scripts 
+    private MissionWaypoint missionWaypoint;
 
     public string itemName; // String variable to store item name
 
@@ -21,6 +22,7 @@ public class MissionItem : MonoBehaviour
     {
         // Linking other scripts
         missionManager = FindObjectOfType<MissionManager>();
+        missionWaypoint = FindObjectOfType<MissionWaypoint>();
 
         playerObj = GameObject.Find("Player");
     }
@@ -37,6 +39,7 @@ public class MissionItem : MonoBehaviour
                 missionManager.itemCollected = itemName; // Sets item to be collected to item name set in unity
                 gameObject.SetActive(false); // Disables object upon collision
                 missionManager.missionStarted = false;
+                missionWaypoint.img.gameObject.SetActive(false);
                 missionManager.missionsCompleted++;
                 playerObj.GetComponent<AyanMainController>().incrementMission(missionManager.missionsCompleted);
             }
