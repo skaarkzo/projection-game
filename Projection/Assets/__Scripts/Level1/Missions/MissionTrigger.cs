@@ -34,14 +34,14 @@ public class MissionTrigger : MonoBehaviour
     // On trigger function
     private void OnTriggerEnter(Collider other)
     {
-        // Checks tag of object colliding to insure it is the player
+        //Checks tag of object colliding to insure it is the player
         if (other.tag == "Player")
         {
-            // Checks to see if the mission is not completed 
+            //Checks to see if the mission is not completed
             if (!missionManager.missionCompleted[missionNumber])
             {
 
-                // Checks to see if it is a start mission and if the mission has not been started
+                //Checks to see if it is a start mission and if the mission has not been started
                 if (!missionManager.missionStarted && startMission && !missionManager.missions[missionNumber].gameObject.activeSelf)
                 {
 
@@ -54,6 +54,8 @@ public class MissionTrigger : MonoBehaviour
                         missionWaypoint.target = target;
                         missionWaypoint.img.gameObject.SetActive(true);
                     }
+
+                    Debug.Log("Entered");
 
                     missionManager.missions[missionNumber].gameObject.SetActive(true); // Activates game object
                     missionManager.missions[missionNumber].StartMission(); // Starts mission
